@@ -7,17 +7,20 @@ public class Unit : MonoBehaviour
 
     protected GameObject body { get; }   
     
+    [SerializeField]
+    public bool IsSelected { get; set; } //is Selected by the player
+    protected bool IsCarryingResources { get; set; } //is carrying resources
 
-    protected bool isSelected { get; set; } //is Selected by the player
-    protected bool isCarryingResources { get; set; } //is carrying resources
 
+    protected float BaseSpeed { get; set; }  //base moving speed for the unit
+    protected float TransportatingModifier { get; } //speed modifier for when carrying resources
+    protected float BaseHealth { get; } //health of the unit
 
-    protected float baseSpeed { get; set; }  //base moving speed for the unit
-    protected float transportatingModifier { get; } //speed modifier for when carrying resources
-    protected float baseHealth { get; } //health of the unit
+    public Target CurrentTarget { get; set; }
 
     public void MoveToPosition(Vector3 position)
     {
+        StopAllCoroutines();
         StartCoroutine(MoveCoroutine(position));
     }
 
@@ -25,10 +28,10 @@ public class Unit : MonoBehaviour
     {
         while(Vector3.Distance(position,this.gameObject.transform.position) > 0.05)
         {
-            Vector3.Lerp(this.gameObject.transform.position, position, baseSpeed);
-            yield return 0.05f;
+            this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, position, BaseSpeed/1000);
+            yield return null;
         }
-        yield return null; 
+        Debug.Log("Coroutine exit"); 
         
     }
     

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class TestPlaneUnit : AirUnit
 {
-    
+    public TestPlaneUnit()
+    {
+        this.BaseSpeed = 5.0f;
+    }
 }
