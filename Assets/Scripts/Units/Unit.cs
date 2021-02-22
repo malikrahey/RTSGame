@@ -21,6 +21,7 @@ public class Unit : MonoBehaviour
     public void MoveToPosition(Vector3 position)
     {
         StopAllCoroutines();
+        TurnToTarget(position);
         StartCoroutine(MoveCoroutine(position));
     }
 
@@ -31,7 +32,24 @@ public class Unit : MonoBehaviour
             this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, position, BaseSpeed/1000);
             yield return null;
         }
-        Debug.Log("Coroutine exit"); 
+    }
+
+    private void TurnToTarget(Vector3 targetPosition)
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized; //DIR AB = B - A
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        StartCoroutine(TurnToTargetCoroutine(targetRotation));
+    }
+
+    private IEnumerator TurnToTargetCoroutine(Quaternion lookDirection)
+    {
+        
+        while(Quaternion.Dot(transform.rotation, lookDirection) > 0.05f)
+        {
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookDirection, 0.05f);
+            yield return null;
+        }
         
     }
     
