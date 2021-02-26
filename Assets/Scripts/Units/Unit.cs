@@ -16,7 +16,25 @@ public class Unit : MonoBehaviour
     protected float TransportatingModifier { get; } //speed modifier for when carrying resources
     protected float BaseHealth { get; } //health of the unit
 
+    protected float AttackRange { get; }
+
     public Target CurrentTarget { get; set; }
+
+
+    public void InteractWithTarget(Target target)
+    {
+        switch(target.Type)
+        {
+            case TargetType.POSITION:
+                break;
+            case TargetType.ENEMY:
+                break;
+            case TargetType.RESOURCE:
+                break;
+
+        }
+    }
+
 
     public void MoveToPosition(Vector3 position)
     {

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
-    private float moveSpeed = 1.0f;
+    private float moveSpeed = 5.0f;
     private float scrollSpeed = -30.0f;
 
     private List<Unit> selectedUnits = new List<Unit>();
@@ -20,22 +20,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        /*if(Input.GetKey(KeyCode.W))
-        {
-            this.gameObject.transform.Translate(Vector3.forward  * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            this.gameObject.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            this.gameObject.transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            this.gameObject.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-        }*/
 
 
         int xDir = Convert.ToInt32(Input.GetKey(KeyCode.D)) - Convert.ToInt32(Input.GetKey(KeyCode.A));
@@ -43,10 +27,11 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveVector = new Vector3( xDir, Input.mouseScrollDelta.y * scrollSpeed, zDir);
 
-        gameObject.transform.Translate(moveVector * moveSpeed /100);
+        gameObject.transform.Translate(moveVector * moveSpeed *Time.deltaTime);
         
         if(Input.GetMouseButtonDown(0))
         {
+            
             Debug.Log("press");
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit hit;
@@ -62,6 +47,10 @@ public class PlayerController : MonoBehaviour
                     other.IsSelected = true;
                     selectedUnits.Add(other);
                 }
+                else
+                {
+                    ClearSelectedunits();
+                }
             }
         }
 
@@ -73,8 +62,22 @@ public class PlayerController : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit))
             {
-                
-                Target target = new Target(hit.point);
+                Target target;
+                if(hit.transform.gameObject.CompareTag("Unit"))
+                {
+                    Unit targetUnit = hit.transform.gameObject.GetComponent<Unit>();
+                    target = new Target(targetUnit);
+                } 
+                else if(hit.transform.gameObject.CompareTag("Resource"))
+                {
+                    target = new Target(hit.transform.position);
+                }
+                else
+                {
+                    target = new Target(hit.point);
+                }
+
+
                 Debug.Log(target.Position);
                 foreach(Unit unit in selectedUnits)
                 {
@@ -88,5 +91,14 @@ public class PlayerController : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+
+    private void ClearSelectedunits()
+    {
+        foreach(Unit unit in selectedUnits)
+        {
+            unit.IsSelected = false;
+        }
+        selectedUnits.Clear();
     }
 }
