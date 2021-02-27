@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 62
+  controlID: 16
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 126
+  controlID: 14
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 61
+  controlID: 15
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -338,20 +338,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: F:\Projects\RTSGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3a340000
-    m_LastClickedID: 13370
-    m_ExpandedIDs: 00000000323400003e34000000ca9a3b
+    m_SelectedIDs: d2490000
+    m_LastClickedID: 18898
+    m_ExpandedIDs: 00000000d249000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -379,7 +379,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000032340000
+    m_ExpandedIDs: 00000000d2490000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -502,9 +502,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d8330000
-      m_LastClickedID: 13272
-      m_ExpandedIDs: 64fbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 6843ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -564,9 +564,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -12.97732, y: -11.585712, z: 7.21268}
+    m_Target: {x: -13.366363, y: -11.2556, z: 9.87649}
     speed: 2
-    m_Value: {x: -12.97732, y: -11.585712, z: 7.21268}
+    m_Value: {x: -13.366363, y: -11.2556, z: 9.87649}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -612,13 +612,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.6797144, y: -0.0028888762, z: 0.0026222516, w: -0.7335671}
+    m_Target: {x: -0.64441717, y: 0.029087016, z: -0.024596589, w: -0.7638221}
     speed: 2
-    m_Value: {x: -0.67966425, y: -0.0028886632, z: 0.0026220581, w: -0.733513}
+    m_Value: {x: -0.6444054, y: 0.027939172, z: -0.023628177, w: -0.7638081}
   m_Size:
-    m_Target: 17.656113
+    m_Target: 30.831415
     speed: 2
-    m_Value: 17.656113
+    m_Value: 29.503746
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -694,8 +694,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -651
     m_HBaseRangeMax: 651
-    m_VBaseRangeMin: -242
-    m_VBaseRangeMax: 242
+    m_VBaseRangeMin: -252.5
+    m_VBaseRangeMax: 252.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -712,11 +712,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 1302
-      height: 484
+      height: 505
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 651, y: 242}
+    m_Translation: {x: 651, y: 252.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -724,9 +724,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -651
-      y: -242
+      y: -252.5
       width: 1302
-      height: 484
+      height: 505
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1302, y: 505}
