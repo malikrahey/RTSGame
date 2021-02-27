@@ -5,7 +5,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
 
-    protected GameObject body { get; }   
+    protected GameObject Body { get; }   
     
     [SerializeField]
     public bool IsSelected { get; set; } //is Selected by the player
