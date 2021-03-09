@@ -67,11 +67,15 @@
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerActionMap.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\LargeResourceGroup.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\RegularResourceGroup.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\ResourceBehaviour.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\SmallResourceGroup.cs" />
+    <Compile Include="Assets\Scripts\Units\AirUnits\AirUnit.cs" />
     <Compile Include="Assets\Scripts\Units\AirUnits\TestPlaneUnit.cs" />
+    <Compile Include="Assets\Scripts\Units\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\Units\LandUnits\HeavyTank.cs" />
     <Compile Include="Assets\Scripts\Units\Target.cs" />
     <Compile Include="Assets\Scripts\Units\Unit.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

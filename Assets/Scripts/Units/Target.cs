@@ -36,5 +36,12 @@ public class Target
         this.Type = TargetType.ENEMY;
     }
 
+    public Target(Unit target, TargetType type)
+    {
+        this.Position = target.transform.position;
+        this.TargetUnit = target;
+        this.Type = type;
+    }
+
 
 }

@@ -72,6 +72,12 @@ public class PlayerController : MonoBehaviour
                 {
                     target = new Target(hit.transform.position);
                 }
+                else if(hit.transform.gameObject.CompareTag("Enemy"))
+                {
+                    Debug.Log("Enemy hit");
+                    Unit targetUnit = hit.transform.gameObject.GetComponent<Unit>();
+                    target = new Target(targetUnit, TargetType.ENEMY);
+                }
                 else
                 {
                     target = new Target(hit.point);
@@ -82,7 +88,7 @@ public class PlayerController : MonoBehaviour
                 foreach(Unit unit in selectedUnits)
                 {
                     unit.CurrentTarget = target;
-                    unit.MoveToPosition(target.Position);
+                    unit.InteractWithTarget(target);
                 }
             }
         }
