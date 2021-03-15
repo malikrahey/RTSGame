@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 7}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 881, y: 492}
   m_MaxSize: {x: 16006, y: 14042}
   vertical: 0
-  controlID: 154
+  controlID: 109
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -176,7 +176,7 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 781
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &8
 MonoBehaviour:
@@ -375,10 +375,10 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 88}
-    m_SelectedIDs: cc360000
-    m_LastClickedID: 14028
-    m_ExpandedIDs: 00000000b4360000b6360000c0360000cc36000000ca9a3b
+    scrollPos: {x: 0, y: 28}
+    m_SelectedIDs: e6340000
+    m_LastClickedID: 13542
+    m_ExpandedIDs: 00000000cc340000ce34000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -406,7 +406,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b4360000b6360000
+    m_ExpandedIDs: 00000000cc340000ce340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -529,9 +529,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e0360000
+      m_SelectedIDs: e6340000
       m_LastClickedID: 0
-      m_ExpandedIDs: 7af6ffff
+      m_ExpandedIDs: 4efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 127.64433, y: 187.96397, z: -52.14395}
     speed: 2
-    m_Value: {x: -3.5735266, y: 3.9175243, z: 0.5441294}
+    m_Value: {x: 127.64433, y: 187.96397, z: -52.14395}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -641,11 +641,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.0129091, y: -0.008704291, z: 0.00011148252, w: 0.9998813}
     speed: 2
-    m_Value: {x: -0.4808728, y: 0.02735027, z: -0.015013625, w: -0.8762494}
+    m_Value: {x: -0.0129091, y: 0.00870429, z: -0.00011148251, w: -0.9998813}
   m_Size:
     m_Target: 146.91618
     speed: 2
-    m_Value: 13.984054
+    m_Value: 146.91618
   m_Ortho:
     m_Target: 0
     speed: 2
