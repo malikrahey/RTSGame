@@ -11,6 +11,7 @@ public class ResourceBehaviour : MonoBehaviour
     {
         if(this.ResourcesRemaining > otherCarryCapacity)
         {
+            Debug.Log("Resources collected");
             ResourcesRemaining -= otherCarryCapacity;
             return otherCarryCapacity;
         }

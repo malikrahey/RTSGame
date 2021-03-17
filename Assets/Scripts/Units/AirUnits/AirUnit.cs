@@ -6,6 +6,10 @@ public class AirUnit : Unit
 {
 
     protected float elevationHeight;
+    void OnEnable()
+    {
+        this.CarryCapacity = 101;
+    }
 
 
 }

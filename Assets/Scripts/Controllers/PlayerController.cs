@@ -70,7 +70,9 @@ public class PlayerController : MonoBehaviour
                 } 
                 else if(hit.transform.gameObject.CompareTag("Resource"))
                 {
-                    target = new Target(hit.transform.position);
+                    Debug.Log("Resource clicked");
+                    ResourceBehaviour targetResource = hit.transform.gameObject.GetComponent<ResourceBehaviour>();
+                    target = new Target(targetResource);
                 }
                 else if(hit.transform.gameObject.CompareTag("Enemy"))
                 {
