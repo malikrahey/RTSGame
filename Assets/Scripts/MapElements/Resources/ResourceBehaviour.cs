@@ -26,13 +26,13 @@ public class ResourceBehaviour : MonoBehaviour
 
     private IEnumerator FadeAway()
     {
-
-        Material material = this.gameObject.GetComponent<Material>();
+        MeshRenderer renderer = this.gameObject.GetComponent<MeshRenderer>();
+        Material material = renderer.material;
         while(material.color.a > 0)
         {
             material.color = new Color(material.color.r, material.color.g, material.color.b, material.color.a - 5);
 
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.1f);
         }
         this.gameObject.SetActive(false);
     }
