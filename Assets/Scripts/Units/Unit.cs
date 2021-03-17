@@ -179,8 +179,13 @@ public class Unit : MonoBehaviour
     {
         if(CarryCapacity>Carrying)//only take the resurces if there is room
         {
+            Debug.Log("Added resources");
             Carrying = Carrying + other.TakeResources(CarryCapacity);
-        }        
+        }
+        else
+        {
+            Debug.Log("Full capacity");
+        }
     }
 
     /*
