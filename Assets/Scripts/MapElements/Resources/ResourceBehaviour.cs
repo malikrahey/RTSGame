@@ -7,21 +7,14 @@ public class ResourceBehaviour : MonoBehaviour
    protected int ResourcesRemaining { get; set; }
 
 
-    public int TakeResources(int otherCarryCapacity)
+    public void TakeResources(int otherCarryCapacity)
     {
         if(this.ResourcesRemaining > otherCarryCapacity)
-        {
-            Debug.Log("Resources collected");
-            ResourcesRemaining -= otherCarryCapacity;
-            return otherCarryCapacity;
+        {            
+            ResourcesRemaining -= 1;
+            return ;
         }
-        else
-        {
-            int resourcesLeft = ResourcesRemaining;
-            ResourcesRemaining = 0;
-            StartCoroutine(FadeAway());
-            return resourcesLeft;
-        }
+        Debug.Log("Resources collected");
     }
 
     private IEnumerator FadeAway()

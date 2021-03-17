@@ -177,14 +177,20 @@ public class Unit : MonoBehaviour
 
     public void gatherResources(ResourceBehaviour other)
     {
-        if(CarryCapacity>Carrying)//only take the resurces if there is room
+        if(CarryCapacity > Carrying)
         {
+            Debug.Log("Adding Resources");
+            while (CarryCapacity > Carrying & other.isActiveAndEnabled)//only take the resurces if there is room and there are resources to take
+            {
+                Carrying = Carrying + 1;
+                other.TakeResources(CarryCapacity - Carrying);
+                Debug.Log(Carrying);
+            }
             Debug.Log("Added resources");
-            Carrying = Carrying + other.TakeResources(CarryCapacity);
         }
         else
         {
-            Debug.Log("Full capacity");
+            Debug.Log("No room for more");
         }
     }
 

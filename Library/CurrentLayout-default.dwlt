@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 7}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 392}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -364,11 +364,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Units/AirUnits
+    - Assets/Scripts/MapElements/Resources
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Units/AirUnits
+  - Assets/Scripts/MapElements/Resources
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Nicholas Wells\Mun\Term 5\Software design\Project\GitHub
     files\RTSGame
@@ -376,9 +376,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 44}
-    m_SelectedIDs: 58350000
-    m_LastClickedID: 13656
-    m_ExpandedIDs: 000000002e35000030350000523500005435000000ca9a3b
+    m_SelectedIDs: ce3c0000
+    m_LastClickedID: 15566
+    m_ExpandedIDs: 000000002e350000303500005a3500005c35000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -431,8 +431,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 1a340000
-    m_LastClickedInstanceID: 13338
+    m_SelectedInstanceIDs: 2afbffff
+    m_LastClickedInstanceID: -1238
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000983b0000563b0000cc5b0000
     m_RenameOverlay:
@@ -499,7 +499,7 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 540
+  m_LastVerticalScrollValue: 100
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -529,9 +529,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 2a340000
-      m_LastClickedID: 13354
-      m_ExpandedIDs: 68fbffff6afbffff2a340000
+      m_SelectedIDs: 4a340000
+      m_LastClickedID: 13386
+      m_ExpandedIDs: 68fbffff6afbffff1a3400002a34000044340000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -591,9 +591,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -30.66763, y: -48.07911, z: 38.848625}
+    m_Target: {x: -28.033562, y: -23.67934, z: 4.4798055}
     speed: 2
-    m_Value: {x: -30.66763, y: -48.07911, z: 38.848625}
+    m_Value: {x: -28.033562, y: -23.67934, z: 4.4798055}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -639,13 +639,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.35289463, y: -0.2887337, z: 0.115460895, w: 0.88248324}
+    m_Target: {x: 0.2545359, y: -0.64993083, z: 0.24597958, w: 0.6725381}
     speed: 2
-    m_Value: {x: 0.35289297, y: -0.28873232, z: 0.11546034, w: 0.882479}
+    m_Value: {x: 0.2545344, y: -0.64992696, z: 0.24597812, w: 0.6725341}
   m_Size:
-    m_Target: 43.839462
+    m_Target: 28.251469
     speed: 2
-    m_Value: 43.839462
+    m_Value: 28.251469
   m_Ortho:
     m_Target: 0
     speed: 2
