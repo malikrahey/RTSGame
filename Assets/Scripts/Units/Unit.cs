@@ -27,6 +27,10 @@ public class Unit : MonoBehaviour
 
     public Target CurrentTarget { get; set; }
 
+    public int CarryCapacity;
+
+    public int Carrying;
+
     private HealthBar healthBar;
 
 
@@ -55,6 +59,7 @@ public class Unit : MonoBehaviour
                 this.HandleAttackingEnemy(target);
                 break;
             case TargetType.RESOURCE:
+                this.HandleGettingResources(target);
                 break;
 
         }
@@ -160,6 +165,22 @@ public class Unit : MonoBehaviour
             yield return new WaitForSeconds(0.01f) ;
         }
         this.gameObject.SetActive(false);
+    }
+
+    private void HandleGettingResources(Target target)
+    {
+        StopAllCoroutines();
+        this.TurnToTarget(target.Position);
+        this.MoveToTarget(CurrentTarget, 5);
+        this.gatherResources(CurrentTarget.TargetResource);
+    }
+
+    public void gatherResources(ResourceBehaviour other)
+    {
+        if(CarryCapacity>Carrying)//only take the resurces if there is room
+        {
+            Carrying = Carrying + other.TakeResources(CarryCapacity);
+        }        
     }
 
     /*
