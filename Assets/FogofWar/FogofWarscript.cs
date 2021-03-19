@@ -21,7 +21,23 @@ public class FogofWarscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Ray r = new Ray(transform.position, units.position - transform.position);
+        RaycastHit hit;
+        if (Physics.Raycast(r, out hit, 1000, FogLayer, QueryTriggerInteraction.Collide))
+        {
+            for(int i = 0; i < vertices.Length; i++)
+            {
+                Vector3 v = FogofWarPlane.transform.TransformPoint(vertices[i]);
+                float dis = Vector3.SqrMagnitude(v - hit.point);
+                if (dis < radiusSquared)
+                {
+                    float alpha = Mathf.Min(colours[i].a, dis / radiusSquared);
+                    colours[i].a = alpha;
+                    Debug.Log("New Alpha");
+                }
+            }
+            UpdateColours();
+        }
     }
 
     void Initialize()
