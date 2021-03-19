@@ -64,10 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MainMenu.cs" />
+    <Compile Include="Assets\FogofWar\FogofWarscript.cs" />
     <Compile Include="Assets\Scripts\Controllers\AIController.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerActionMap.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\LargeResourceGroup.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\RegularResourceGroup.cs" />
