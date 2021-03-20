@@ -16,6 +16,8 @@ public class Target
     public Vector3 Position { get; set; }
     public Unit TargetUnit { get; set; }
 
+    public ResourceBehaviour ResourceGroup {get;set;}
+
     public TargetType Type { get; set; }
 
     public Target()
@@ -41,6 +43,14 @@ public class Target
         this.Position = target.transform.position;
         this.TargetUnit = target;
         this.Type = type;
+    }
+
+    public Target(Vector3 position, ResourceBehaviour resource)
+    {
+        this.Position = position;
+        this.ResourceGroup = resource;
+        this.TargetUnit = null;
+        this.Type = TargetType.RESOURCE;
     }
 
 

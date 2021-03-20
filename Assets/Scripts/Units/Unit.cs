@@ -25,6 +25,8 @@ public class Unit : MonoBehaviour
 
     protected float AttackStrength { get; set; }
 
+    protected int CollectionRate { get; set; }
+
     public Target CurrentTarget { get; set; }
 
     private HealthBar healthBar;
@@ -55,6 +57,7 @@ public class Unit : MonoBehaviour
                 this.HandleAttackingEnemy(target);
                 break;
             case TargetType.RESOURCE:
+                this.HandleCollectResources(target);
                 break;
 
         }
@@ -75,6 +78,13 @@ public class Unit : MonoBehaviour
             this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, position, BaseSpeed/1000);
             yield return null;
         }
+    }
+
+    private void HandleCollectResources(Target target)
+    {
+        this.TurnToTarget(target.Position);
+        this.MoveToTarget(target, 5.5f);
+        this.CollectResources(target);
     }
 
     private void HandleAttackingEnemy(Target target)
@@ -171,5 +181,21 @@ public class Unit : MonoBehaviour
         this.IsBeingAttacked = isBeingAttacked;
         this.healthBar.gameObject.SetActive(isBeingAttacked);
 
+    }
+
+    private void CollectResources(Target target)
+    {
+        ResourceBehaviour resource = target.ResourceGroup;
+        StartCoroutine(CollectResourcesCoroutine(resource));
+    }
+
+    private IEnumerator CollectResourcesCoroutine(ResourceBehaviour resource)
+    {
+        while (Vector3.Distance(resource.transform.position, this.transform.position) > 6) yield return null;
+        while(resource.ResourcesRemaining > 0)
+        {
+            GameManager.Instance.Player.AmountOfResources += resource.TakeResources(this.CollectionRate);
+            yield return new WaitForSeconds(1);
+        }
     }
 }
