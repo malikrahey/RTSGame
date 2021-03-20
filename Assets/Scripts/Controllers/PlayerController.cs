@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed = 5.0f;
     private float scrollSpeed = -30.0f;
 
+    public int AmountOfResources { get; set; }
+
     private List<Unit> selectedUnits = new List<Unit>();
 
     void Start()
@@ -70,7 +72,9 @@ public class PlayerController : MonoBehaviour
                 } 
                 else if(hit.transform.gameObject.CompareTag("Resource"))
                 {
-                    target = new Target(hit.transform.position);
+                    Debug.Log("Resource hit");
+                    ResourceBehaviour resource = hit.transform.gameObject.GetComponent<ResourceBehaviour>();
+                    target = new Target(hit.transform.position,resource);
                 }
                 else if(hit.transform.gameObject.CompareTag("Enemy"))
                 {

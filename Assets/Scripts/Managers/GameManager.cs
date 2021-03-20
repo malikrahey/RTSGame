@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject healthBarPrefab;
 
+    public PlayerController Player;
+
     private void Awake()
     {
         _instance = this;

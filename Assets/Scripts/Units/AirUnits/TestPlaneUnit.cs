@@ -12,5 +12,6 @@ public class TestPlaneUnit : AirUnit
         this.AttackStrength = 25f;
         this.BaseHealth = 50f;
         this.CurrentHealth = 50f;
+        this.CollectionRate = 10;
     }
 }
