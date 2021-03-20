@@ -8,6 +8,7 @@ public class FogofWarscript : MonoBehaviour
     public Transform units;
     public LayerMask FogLayer;
     public float radius = 5f;
+    public Camera View;
     private float radiusSquared { get { return radius * radius; } }
 
     private Mesh mesh;
@@ -21,10 +22,12 @@ public class FogofWarscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray r = new Ray(transform.position, units.position - transform.position);
+        Ray r = new Ray(View.transform.position,units.position - View.transform.position);
         RaycastHit hit;
+        Debug.DrawRay(View.transform.position, (units.position - View.transform.position) * 1000, Color.red, Mathf.Infinity);
         if (Physics.Raycast(r, out hit, 1000, FogLayer, QueryTriggerInteraction.Collide))
         {
+            //Debug.Log("Collision detected");
             for(int i = 0; i < vertices.Length; i++)
             {
                 Vector3 v = FogofWarPlane.transform.TransformPoint(vertices[i]);
@@ -33,7 +36,7 @@ public class FogofWarscript : MonoBehaviour
                 {
                     float alpha = Mathf.Min(colours[i].a, dis / radiusSquared);
                     colours[i].a = alpha;
-                    Debug.Log("New Alpha");
+                    //Debug.Log("New Alpha");
                 }
             }
             UpdateColours();

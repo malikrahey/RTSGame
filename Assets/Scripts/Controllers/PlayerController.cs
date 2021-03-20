@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public LayerMask FogofWar;
 
     [SerializeField]
     private float moveSpeed = 5.0f;
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,1000, FogofWar))
             {
                 Debug.DrawRay(mousePosition, Vector3.forward, Color.red);
                 Debug.Log("Ray hit");
