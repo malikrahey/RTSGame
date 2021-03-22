@@ -65,6 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Building.cs" />
+    <Compile Include="Assets\Scripts\Buildings\InProgressBuilding.cs" />
+    <Compile Include="Assets\Scripts\Buildings\UnitBuildings\Garage.cs" />
+    <Compile Include="Assets\Scripts\Buildings\UnitBuildings\Hangar.cs" />
+    <Compile Include="Assets\Scripts\Buildings\UnitBuildings\UnitFactoryBuilding.cs" />
+    <Compile Include="Assets\Scripts\Buildings\UnitBuildings\UnitMenuItems.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerActionMap.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
