@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    [SerializeField]
     Slider Bar;
+    [SerializeField]
     Unit unit;
     private bool isBuilt = false;
 
@@ -30,8 +32,14 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
+        unit = this.gameObject.GetComponentInParent<Unit>();
+        Debug.Log("HB Enabled");
         if(isBuilt)
-        StartCoroutine(UpdateBarCoroutine());
+        {
+            StartCoroutine(UpdateBarCoroutine());
+            Debug.Log("Is Built");
+        }
+        
     }
     private void OnDisable()
     {

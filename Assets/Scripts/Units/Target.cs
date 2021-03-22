@@ -7,7 +7,8 @@ public enum TargetType
 {
     POSITION,
     ENEMY,
-    RESOURCE
+    RESOURCE,
+    CONSTRUCTION
 }
 
 public class Target

@@ -15,9 +15,11 @@ public class PlayerController : MonoBehaviour
 
     private List<Unit> selectedUnits = new List<Unit>();
 
+    private GameObject carriedSite;
+
     void Start()
     {
-        
+        carriedSite = null;
     }
 
     void Update()
@@ -42,7 +44,13 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.DrawRay(mousePosition, Vector3.forward, Color.red);
                 Debug.Log("Ray hit");
-                if (hit.transform.gameObject.CompareTag("Unit"))
+                if(carriedSite != null)
+                {
+                    InProgressBuilding inProgressBuilding = carriedSite.gameObject.GetComponent<InProgressBuilding>();
+                    inProgressBuilding.IsBuilding = true;
+                    carriedSite = null;
+                }
+                else if (hit.transform.gameObject.CompareTag("Unit"))
                 {
                     Debug.Log("unit hit");
                     Unit other = hit.transform.gameObject.GetComponent<Unit>();
@@ -82,6 +90,11 @@ public class PlayerController : MonoBehaviour
                     Unit targetUnit = hit.transform.gameObject.GetComponent<Unit>();
                     target = new Target(targetUnit, TargetType.ENEMY);
                 }
+                else if(hit.transform.gameObject.CompareTag("Construction"))
+                {
+                    //construct
+                    target = new Target(hit.point);
+                }
                 else
                 {
                     target = new Target(hit.point);
@@ -100,6 +113,25 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
+        }
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            //place construction site
+            GameObject site = Instantiate(GameManager.Instance.constructionPrefab) as GameObject;
+            carriedSite = site;
+        }
+        if(carriedSite != null)
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit))
+            {
+                if(hit.transform.CompareTag("Ground"))
+                {
+                    carriedSite.transform.position = hit.point;
+                }
+            }
         }
     }
 

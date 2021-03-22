@@ -27,6 +27,8 @@ public class Unit : MonoBehaviour
 
     protected int CollectionRate { get; set; }
 
+    protected float BuildSpeed { get; set; }
+
     public Target CurrentTarget { get; set; }
 
     private HealthBar healthBar;
@@ -41,7 +43,8 @@ public class Unit : MonoBehaviour
             GameObject healthBarGO = Instantiate(GameManager.Instance.healthBarPrefab) as GameObject;
             healthBarGO.SetActive(false);
             healthBar = healthBarGO.GetComponent<HealthBar>();
-            healthBarGO.transform.SetParent(this.gameObject.transform, false);
+            Transform canvas = this.gameObject.transform.GetChild(0);
+            healthBarGO.transform.SetParent(canvas, true);
 
         }
     }
@@ -178,6 +181,7 @@ public class Unit : MonoBehaviour
      */
     public void SetBeingAttacked(bool isBeingAttacked)
     {
+        Debug.Log("Is being attacked: " + isBeingAttacked.ToString());
         this.IsBeingAttacked = isBeingAttacked;
         this.healthBar.gameObject.SetActive(isBeingAttacked);
 
