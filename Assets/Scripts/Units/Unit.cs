@@ -113,11 +113,9 @@ public class Unit : MonoBehaviour
     }
 
     private IEnumerator TurnToTargetCoroutine(Quaternion lookDirection)
-    {
-        
+    {        
         while(Quaternion.Dot(transform.rotation, lookDirection) > 0.05f)
         {
-
             transform.rotation = Quaternion.Slerp(transform.rotation, lookDirection, 0.05f);
             yield return null;
         }
