@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InProgressBuilding : MonoBehaviour
 {
+
     public float BuildProgress { get; set; }
     public float TimeToBuild { get; set; }
 
@@ -13,20 +15,25 @@ public class InProgressBuilding : MonoBehaviour
 
     private BuildingProject project;
 
+    private bool isNotifiedOfFinish = false;
+
+    public void FinishBuilding()
+    {
+        if (isNotifiedOfFinish) return;
+        isNotifiedOfFinish = true;
+        Vector3 pos = transform.position;
+        GameObject newBuilding = Instantiate(project.buildingPrefab, transform) as GameObject;
+        transform.gameObject.SetActive(false);
+        Destroy(this.gameObject);
+
+    }
 }
 
-class BuildingProject
+public class BuildingProject : MonoBehaviour
 {
 
-    Building building;
-    float buildTime;
-    string name;
-
-    BuildingProject(Building building, float buildTime, string name)
-    {
-        this.building = building;
-        this.buildTime = buildTime;
-        this.name = name;
-    }
+    public GameObject buildingPrefab;
+    public float buildTime;
+    public string buildingName;
 
 }

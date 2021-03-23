@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private List<Unit> selectedUnits = new List<Unit>();
 
-    private GameObject carriedSite;
+    public GameObject carriedSite;
 
     void Start()
     {
@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
                 if(carriedSite != null)
                 {
                     InProgressBuilding inProgressBuilding = carriedSite.gameObject.GetComponent<InProgressBuilding>();
+                    UIManager.Instance.buildingActionBar.SetActive(true);
                     inProgressBuilding.IsBuilding = true;
                     carriedSite = null;
                 }

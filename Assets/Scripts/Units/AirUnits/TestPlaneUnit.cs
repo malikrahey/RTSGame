@@ -8,8 +8,8 @@ public class TestPlaneUnit : AirUnit
     {
         this.BaseSpeed = 5.0f;
         this.AttackRange = 10.0f;
-        this.AttackSpeed = 0.75f;
-        this.AttackStrength = 25f;
+        this.AttackSpeed = 0.1f;
+        this.AttackStrength = 3f;
         this.BaseHealth = 50f;
         this.CurrentHealth = 50f;
         this.CollectionRate = 10;

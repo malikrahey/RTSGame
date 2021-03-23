@@ -74,10 +74,12 @@
     <Compile Include="Assets\Scripts\Controllers\PlayerActionMap.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\LargeResourceGroup.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\RegularResourceGroup.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\ResourceBehaviour.cs" />
     <Compile Include="Assets\Scripts\MapElements\Resources\SmallResourceGroup.cs" />
+    <Compile Include="Assets\Scripts\UI\ActionBarItem.cs" />
     <Compile Include="Assets\Scripts\Units\AirUnits\AirUnit.cs" />
     <Compile Include="Assets\Scripts\Units\AirUnits\TestPlaneUnit.cs" />
     <Compile Include="Assets\Scripts\Units\HealthBar.cs" />
