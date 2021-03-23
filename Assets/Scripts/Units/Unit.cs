@@ -41,10 +41,11 @@ public class Unit : MonoBehaviour
         if(healthBar == null)
         {
             GameObject healthBarGO = Instantiate(GameManager.Instance.healthBarPrefab) as GameObject;
+            healthBarGO.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
             healthBarGO.SetActive(false);
             healthBar = healthBarGO.GetComponent<HealthBar>();
             Transform canvas = this.gameObject.transform.GetChild(0);
-            healthBarGO.transform.SetParent(canvas, true);
+            healthBarGO.transform.SetParent(canvas, false);
 
         }
     }
@@ -61,6 +62,10 @@ public class Unit : MonoBehaviour
                 break;
             case TargetType.RESOURCE:
                 this.HandleCollectResources(target);
+                break;
+            case TargetType.CONSTRUCTION:
+                break;
+            default:
                 break;
 
         }
@@ -85,6 +90,7 @@ public class Unit : MonoBehaviour
 
     private void HandleCollectResources(Target target)
     {
+        StopAllCoroutines();
         this.TurnToTarget(target.Position);
         this.MoveToTarget(target, 5.5f);
         this.CollectResources(target);
@@ -149,6 +155,24 @@ public class Unit : MonoBehaviour
             yield return new WaitForSeconds(this.AttackSpeed);
         }
         other.DeathFade();
+    }
+
+    private void HandleConstruction(Target target)
+    {
+        StopAllCoroutines();
+        TurnToTarget(target.Position);
+        MoveToTarget(target, 5);
+        StartCoroutine(BuildConstructionCoroutine(target.ConstructionBuilding));
+
+    }
+
+    private IEnumerator BuildConstructionCoroutine(InProgressBuilding inProgressBuilding)
+    {
+        while(inProgressBuilding.BuildProgress < 1)
+        {
+            inProgressBuilding.BuildProgress += BuildSpeed;
+            yield return new WaitForSeconds(1);
+        }
     }
     
     public void DeathFade()

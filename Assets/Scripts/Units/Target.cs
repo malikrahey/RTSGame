@@ -19,6 +19,8 @@ public class Target
 
     public ResourceBehaviour ResourceGroup {get;set;}
 
+    public InProgressBuilding ConstructionBuilding { get; set; }
+
     public TargetType Type { get; set; }
 
     public Target()
@@ -52,6 +54,13 @@ public class Target
         this.ResourceGroup = resource;
         this.TargetUnit = null;
         this.Type = TargetType.RESOURCE;
+    }
+
+    public Target(InProgressBuilding inProgressBuilding)
+    {
+        ConstructionBuilding = inProgressBuilding;
+        Position = inProgressBuilding.transform.position;
+        Type = TargetType.CONSTRUCTION;
     }
 
 
