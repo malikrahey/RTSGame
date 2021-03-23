@@ -42,7 +42,7 @@ public class Unit : MonoBehaviour
         if(healthBar == null)
         {
             GameObject healthBarGO = Instantiate(GameManager.Instance.healthBarPrefab) as GameObject;
-            healthBarGO.transform.position = new Vector3(position.x + 44.5f, position.y + 50, position.z - 2);
+            healthBarGO.transform.position = new Vector3(50, 50, -2);
             healthBarGO.transform.rotation = Quaternion.Euler(-45,180,0);
             healthBarGO.SetActive(false);
             healthBar = healthBarGO.GetComponent<HealthBar>();
