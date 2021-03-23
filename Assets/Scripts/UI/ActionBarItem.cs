@@ -13,14 +13,19 @@ public class ActionBarItem : MonoBehaviour
     {
         Text text = GetComponentInChildren<Text>();
         text.text = Name;
+        Name = text.text;
     }
 
     public void OnClick()
     {
         Debug.Log("Clicked the onlckick clicker");
         GameObject site = GameManager.Instance.Player.carriedSite;
-        //InProgressBuilding inProgressBuilding = site.gameObject.GetComponent<InProgressBuilding>();
-        //inProgressBuilding.IsBuilding = true;
+        InProgressBuilding inProgressBuilding = site.gameObject.GetComponent<InProgressBuilding>();
+        Debug.Log(Name);
+        inProgressBuilding.BuildName = this.Name;
+        inProgressBuilding.StartBuilding();
+
+        GameManager.Instance.Player.carriedSite = null;
         UIManager.Instance.buildingActionBar.SetActive(false);
     }
 

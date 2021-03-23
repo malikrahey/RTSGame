@@ -64,6 +64,7 @@ public class Unit : MonoBehaviour
                 this.HandleCollectResources(target);
                 break;
             case TargetType.CONSTRUCTION:
+                this.HandleConstruction(target);
                 break;
             default:
                 break;
@@ -79,7 +80,7 @@ public class Unit : MonoBehaviour
         StartCoroutine(MoveToPositionCoroutine(position));
     }
 
-    private IEnumerator MoveToPositionCoroutine(Vector3 position)
+    protected virtual IEnumerator MoveToPositionCoroutine(Vector3 position)
     {
         while(Vector3.Distance(position,this.gameObject.transform.position) > 0.05)
         {
@@ -129,7 +130,7 @@ public class Unit : MonoBehaviour
         StartCoroutine(MoveToTargetCoroutine(target, range));
     }
 
-    private IEnumerator MoveToTargetCoroutine(Target target, float range)
+    protected virtual IEnumerator MoveToTargetCoroutine(Target target, float range)
     {
         while(Vector3.Distance(target.Position, transform.position) > range)
         {
@@ -170,9 +171,11 @@ public class Unit : MonoBehaviour
     {
         while(inProgressBuilding.BuildProgress < 1)
         {
-            inProgressBuilding.BuildProgress += BuildSpeed;
+            inProgressBuilding.ProgressBuild(this.BuildSpeed);
+            Debug.Log(inProgressBuilding.BuildProgress);
             yield return new WaitForSeconds(1);
         }
+        inProgressBuilding.FinishBuilding();
     }
     
     public void DeathFade()
