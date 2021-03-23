@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ public class UIManager : MonoBehaviour
 
     public GameObject buildingActionBar;
 
+    private int[] timer = new int[2];
+
+
     private void Awake()
     {
         _instance = this;
@@ -22,12 +26,13 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
     {
         resourceText.text = GameManager.Instance.Player.AmountOfResources.ToString() + " : [] ";
+
 
     }
 
@@ -43,5 +48,5 @@ public class UIManager : MonoBehaviour
     {
 
     }
-
+  
 }

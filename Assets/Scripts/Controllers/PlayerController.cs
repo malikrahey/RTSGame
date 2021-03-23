@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private List<Unit> selectedUnits = new List<Unit>();
 
     public GameObject carriedSite;
+    private bool isCarryingSite;
 
     void Start()
     {
@@ -48,8 +49,9 @@ public class PlayerController : MonoBehaviour
                 {
                     InProgressBuilding inProgressBuilding = carriedSite.gameObject.GetComponent<InProgressBuilding>();
                     UIManager.Instance.buildingActionBar.SetActive(true);
-                    inProgressBuilding.IsBuilding = true;
-                    carriedSite = null;
+                    isCarryingSite = false;
+                    //inProgressBuilding.IsBuilding = true;
+                    //carriedSite = null;
                 }
                 else if (hit.transform.gameObject.CompareTag("Unit"))
                 {
@@ -93,8 +95,9 @@ public class PlayerController : MonoBehaviour
                 }
                 else if(hit.transform.gameObject.CompareTag("Construction"))
                 {
-                    //construct
-                    target = new Target(hit.point);
+                    Debug.Log("Construction hit");
+                    InProgressBuilding building = hit.transform.gameObject.GetComponent<InProgressBuilding>();
+                    target = new Target(building);
                 }
                 else
                 {
@@ -120,6 +123,7 @@ public class PlayerController : MonoBehaviour
             //place construction site
             GameObject site = Instantiate(GameManager.Instance.constructionPrefab) as GameObject;
             carriedSite = site;
+            isCarryingSite = true;
         }
         if(carriedSite != null)
         {
@@ -128,7 +132,7 @@ public class PlayerController : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out hit))
             {
-                if(hit.transform.CompareTag("Ground"))
+                if(hit.transform.CompareTag("Ground") && isCarryingSite)
                 {
                     carriedSite.transform.position = hit.point;
                 }

@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Buildings\Building.cs" />
+    <Compile Include="Assets\Scripts\Buildings\BuildingProject.cs" />
     <Compile Include="Assets\Scripts\Buildings\InProgressBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnitBuildings\Garage.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnitBuildings\Hangar.cs" />

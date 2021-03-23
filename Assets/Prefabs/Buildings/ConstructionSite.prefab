@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1216556582}
   m_Layer: 0
   m_Name: ConstructionSite
-  m_TagString: Untagged
+  m_TagString: Construction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,3 +106,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d79f1c7a65db014295b40bffbc3a6ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  project: {fileID: 0}

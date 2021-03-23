@@ -13,5 +13,7 @@ public class TestPlaneUnit : AirUnit
         this.BaseHealth = 50f;
         this.CurrentHealth = 50f;
         this.CollectionRate = 10;
+        this.elevationHeight = 5.0f;
+        this.BuildSpeed = 5.0f;
     }
 }
