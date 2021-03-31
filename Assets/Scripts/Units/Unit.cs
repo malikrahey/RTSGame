@@ -12,6 +12,8 @@ public class Unit : MonoBehaviour
     [SerializeField]
     public bool IsSelected { get; set; } //is Selected by the player
     public bool IsBeingAttacked { get; set; }
+
+    public bool IsIdle { get; set; }
     protected bool IsCarryingResources { get; set; } //is carrying resources
 
     protected float BaseSpeed { get; set; }  //base moving speed for the unit
@@ -40,6 +42,9 @@ public class Unit : MonoBehaviour
         Vector3 position = this.transform.position;
         healthBar = this.gameObject.GetComponentInChildren<HealthBar>();
         //lazy instantiation
+        IsIdle = true;
+
+
         if(healthBar == null)
         {
             GameObject healthBarGO = Instantiate(GameManager.Instance.healthBarPrefab) as GameObject;
@@ -94,6 +99,7 @@ public class Unit : MonoBehaviour
 
     private void HandleCollectResources(Target target)
     {
+        Debug.Log("Collecting resources");
         StopAllCoroutines();
         this.TurnToTarget(target.Position);
         this.MoveToTarget(target, 5.5f);
@@ -119,7 +125,7 @@ public class Unit : MonoBehaviour
     {        
         while(this.transform.rotation != lookDirection)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookDirection, 0.05f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookDirection, 0.05f);
             yield return null;
         }
         
@@ -212,6 +218,11 @@ public class Unit : MonoBehaviour
         Debug.Log("Is being attacked: " + isBeingAttacked.ToString());
         this.IsBeingAttacked = isBeingAttacked;
         this.healthBar.gameObject.SetActive(isBeingAttacked);
+      
+    }
+
+    private void Retaliate()
+    {
 
     }
 
@@ -223,7 +234,7 @@ public class Unit : MonoBehaviour
 
     private IEnumerator CollectResourcesCoroutine(ResourceBehaviour resource)
     {
-        while (Vector3.Distance(resource.transform.position, this.transform.position) > 6) yield return null;
+        while (Vector3.Distance(resource.transform.position, this.transform.position) > 7) yield return null;
         while(resource.ResourcesRemaining > 0)
         {
             GameManager.Instance.Player.AmountOfResources += resource.TakeResources(this.CollectionRate);

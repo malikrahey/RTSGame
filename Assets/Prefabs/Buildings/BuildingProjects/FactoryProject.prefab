@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 4124505517506962853, guid: 71f1831c24e3e1e4c9690fa54095bd43,
     type: 3}
-  buildTime: 20
+  buildTime: 40
   buildingName: Factory

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private List<Unit> selectedUnits = new List<Unit>();
 
     public GameObject carriedSite;
+    public Building selectedBuilding;
     private bool isCarryingSite;
 
     void Start()
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveVector = new Vector3( xDir, Input.mouseScrollDelta.y * scrollSpeed, zDir);
 
-        gameObject.transform.Translate(moveVector * moveSpeed *Time.deltaTime);
+        gameObject.transform.Translate(moveVector * moveSpeed);
         
         if(Input.GetMouseButtonDown(0))
         {
@@ -59,6 +61,19 @@ public class PlayerController : MonoBehaviour
                     Unit other = hit.transform.gameObject.GetComponent<Unit>();
                     other.IsSelected = true;
                     selectedUnits.Add(other);
+                }
+                else if(hit.transform.gameObject.CompareTag("Building"))
+                {
+                    Debug.Log("Building clicked ");
+                    Building building = hit.transform.gameObject.GetComponent<Building>();
+                  
+                    if (building.GetType() == typeof(UnitFactoryBuilding))
+                    {
+                        UnitFactoryBuilding unitFactory = building as UnitFactoryBuilding;
+                        unitFactory.SetActionBar(true);
+                        selectedBuilding = unitFactory;
+                        
+                    }
                 }
                 else
                 {
@@ -117,6 +132,10 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(1);
         }
         if(Input.GetKeyDown(KeyCode.B))
         {

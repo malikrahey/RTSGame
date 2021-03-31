@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8737642137030907375}
   - component: {fileID: 5687356590072093258}
   - component: {fileID: 7568716878225976960}
-  - component: {fileID: 6101934963427760051}
   - component: {fileID: 1256390163758459879}
+  - component: {fileID: -5882012517078477335}
   m_Layer: 0
   m_Name: hangar
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,18 +89,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6101934963427760051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8217248074813542229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e22db8d899bda0149ae327d52d44b983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &1256390163758459879
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -115,3 +103,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3145058497754134291, guid: 8f25e34c5fd34d4458a9c8a94dfd76e8, type: 3}
+--- !u!114 &-5882012517078477335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8217248074813542229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e0642619c9390498ddc18f743d9b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  actionBar: {fileID: 0}
+  buildingBuildSpeed: 1

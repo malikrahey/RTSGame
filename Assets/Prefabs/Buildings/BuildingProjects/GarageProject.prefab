@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925bb9111fbf98c4b9c83e0d6f4ebeba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 919132149155446097, guid: 4fc5c257156476d459b012f4b4897cb2,
+  buildingPrefab: {fileID: 4705877750086372665, guid: 9d3940d5f0163034dac9ed386bb9882b,
     type: 3}
-  buildTime: 10
+  buildTime: 25
   buildingName: Garage

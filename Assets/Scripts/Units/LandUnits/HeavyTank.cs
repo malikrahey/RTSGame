@@ -6,7 +6,13 @@ public class HeavyTank : Unit
 {
     HeavyTank()
     {
-        this.BaseHealth = 200.0f;
-        this.CurrentHealth = 200.0f;
+        this.BaseSpeed = 3.0f;
+        this.AttackRange = 15.0f;
+        this.AttackSpeed = 0.4f;
+        this.AttackStrength = 5f;
+        this.BaseHealth = 200f;
+        this.CurrentHealth = 200f;
+        this.CollectionRate = 10;
+        this.BuildSpeed = 5.0f;
     }
 }

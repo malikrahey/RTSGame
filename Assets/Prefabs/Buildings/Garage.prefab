@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5333795009145624451}
   - component: {fileID: 9055236747552577574}
   - component: {fileID: 6507242491496869100}
-  - component: {fileID: 1775869810692454406}
   - component: {fileID: 3548600584577912641}
+  - component: {fileID: 5379959322652549470}
   m_Layer: 0
   m_Name: Garage
   m_TagString: Building
@@ -89,18 +89,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1775869810692454406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4705877750086372665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfbb57f52540ac740b15d0ce0aae3b0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &3548600584577912641
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -115,3 +103,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3145058497754134291, guid: 4fc5c257156476d459b012f4b4897cb2, type: 3}
+--- !u!114 &5379959322652549470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705877750086372665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e0642619c9390498ddc18f743d9b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  actionBar: {fileID: 0}
+  buildingBuildSpeed: 1

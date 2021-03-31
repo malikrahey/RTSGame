@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     public GameObject actionBar;
 
     public GameObject buildingActionBar;
+    public GameObject hangarActionBar;
+    public GameObject garageActionBar;
 
     private int[] timer = new int[2];
 
