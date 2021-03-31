@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 8217248074813542229, guid: aa9b0715d92159b48845f287041b1985,
     type: 3}
-  buildTime: 10
+  buildTime: 25
   buildingName: Hangar

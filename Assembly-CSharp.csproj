@@ -67,11 +67,12 @@
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Buildings\Building.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingProject.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Factory.cs" />
     <Compile Include="Assets\Scripts\Buildings\InProgressBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnitBuildings\Garage.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnitBuildings\Hangar.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnitBuildings\UnitFactoryBuilding.cs" />
-    <Compile Include="Assets\Scripts\Buildings\UnitBuildings\UnitMenuItems.cs" />
+    <Compile Include="Assets\Scripts\Buildings\UnitBuildings\UnitMenuItem.cs" />
     <Compile Include="Assets\Scripts\Controllers\AIController.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerActionMap.cs" />
     <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets\Scripts\Units\AirUnits\TestPlaneUnit.cs" />
     <Compile Include="Assets\Scripts\Units\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Units\LandUnits\HeavyTank.cs" />
+    <Compile Include="Assets\Scripts\Units\LandUnits\LowCar.cs" />
     <Compile Include="Assets\Scripts\Units\Target.cs" />
     <Compile Include="Assets\Scripts\Units\Unit.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
