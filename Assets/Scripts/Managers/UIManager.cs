@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject actionBarItemPrefab;
     public Text resourceText;
     public Text timerText;
+    public Text selectedUnitsText;
     public GameObject actionBar;
 
     public GameObject buildingActionBar;
@@ -34,7 +35,6 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         resourceText.text = GameManager.Instance.Player.AmountOfResources.ToString() + " : [] ";
-
 
     }
 
