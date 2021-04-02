@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject healthBarPrefab;
     public GameObject constructionPrefab;
     public GameObject BuildingHealthPrefab;
+    public GameObject BuildingprogressPrefab;
 
 
     public PlayerController Player;

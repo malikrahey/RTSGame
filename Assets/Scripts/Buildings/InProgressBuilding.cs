@@ -18,6 +18,25 @@ public class InProgressBuilding : MonoBehaviour
 
     private bool isNotifiedOfFinish = false;
 
+    private ProgressBarContainer progressBar;
+
+    private void Start()
+    {
+        BuildProgress = 0;
+        progressBar = this.gameObject.GetComponentInChildren<ProgressBarContainer>();
+        if (progressBar == null)
+        {
+            GameObject buildingHealthGO = Instantiate(GameManager.Instance.BuildingprogressPrefab) as GameObject;
+            buildingHealthGO.transform.position = new Vector3(50, 50, -2);
+            buildingHealthGO.transform.rotation = Quaternion.Euler(-45, 180, 0);
+            buildingHealthGO.SetActive(false);
+            buildingHealthGO.SetActive(true);
+            progressBar = buildingHealthGO.GetComponent<ProgressBarContainer>();
+            Transform canvas = this.gameObject.transform.GetChild(0);
+            buildingHealthGO.transform.SetParent(canvas, false);
+        }
+    }
+
     public void StartBuilding()
     {
         Debug.Log(BuildName);
