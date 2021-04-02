@@ -20,7 +20,7 @@ public class ProgressBarContainer : MonoBehaviour
     }
     private void OnEnable()
     {        
-        IPbuilding = this.gameObject.GetComponentInParent<InProgressBuilding>();              
+        IPbuilding = this.gameObject.GetComponentInParent<InProgressBuilding>();
         if (IPbuilding != null)
         {
             Debug.Log("Building good");
