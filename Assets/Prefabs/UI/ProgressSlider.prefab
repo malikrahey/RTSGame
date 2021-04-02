@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4823667552592255718}
   - component: {fileID: 336839519635913501}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ProgressSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 2376225060128052338}
   - component: {fileID: 427005234195394682}
   - component: {fileID: 8437676501345672967}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 33815185459394562}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 1450734764012385082}
   - component: {fileID: 4036250524639508533}
   - component: {fileID: 2154407519026238428}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 4401111960903933550}
   - component: {fileID: 3087273705381868823}
   - component: {fileID: 6278418479790185843}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3449902474212757910}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

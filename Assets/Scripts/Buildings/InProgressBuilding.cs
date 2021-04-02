@@ -6,7 +6,7 @@ using UnityEngine;
 public class InProgressBuilding : MonoBehaviour
 {
 
-    public float BuildProgress { get; set; }
+    public float BuildProgress = 0;
 
     public float Health { get; set; }
 
@@ -33,13 +33,11 @@ public class InProgressBuilding : MonoBehaviour
             progressBar = buildingProgressGO.GetComponent<ProgressBarContainer>();
             Transform canvas = this.gameObject.transform.GetChild(0);
             buildingProgressGO.transform.SetParent(canvas, false);
-            this.progressBar.gameObject.SetActive(true);
         }
     }
 
     public void StartBuilding()
     {
-        this.progressBar.gameObject.SetActive(true);
         Debug.Log(BuildName);
         foreach(BuildingProject project in GameManager.Instance.buildingProjects)
         {
@@ -58,6 +56,7 @@ public class InProgressBuilding : MonoBehaviour
 
     public void ProgressBuild(float unitBuildSpeed)
     {
+        this.progressBar.gameObject.SetActive(true);
         this.BuildProgress += unitBuildSpeed / project.buildTime;
     }
 

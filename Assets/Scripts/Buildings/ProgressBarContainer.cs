@@ -11,7 +11,7 @@ public class ProgressBarContainer : MonoBehaviour
     InProgressBuilding IPbuilding;
     private bool isBuilt = false;
 
-    void Start()
+    void Awake()
     {
         Debug.Log("hb constructor:)");
         IPbuilding = this.gameObject.GetComponentInParent<InProgressBuilding>();
@@ -25,14 +25,15 @@ public class ProgressBarContainer : MonoBehaviour
         {
             Debug.Log("Building good");
         }
-        Bar = this.gameObject.GetComponentInChildren<Slider>();
         if (Bar != null)
         {
             Debug.Log("Bar good");
         }
         Debug.Log("Building progress Enabled");
-        
-        StartCoroutine(UpdateBPCoroutine());
+        if(isBuilt)
+        {
+            StartCoroutine(UpdateBPCoroutine());
+        }
            
 
     }
@@ -43,7 +44,10 @@ public class ProgressBarContainer : MonoBehaviour
 
     private IEnumerator UpdateBPCoroutine()
     {
+        while(Bar.value < 1)
+        {
             Bar.value = IPbuilding.BuildProgress;
             yield return null;
+        }            
     }
 }
