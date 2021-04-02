@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
 
-    protected GameObject Body { get; }   
-    
+    protected GameObject Body { get; }
+
+    public string unitName;
+
     [SerializeField]
     public bool IsSelected { get; set; } //is Selected by the player
     public bool IsBeingAttacked { get; set; }
@@ -102,7 +104,7 @@ public class Unit : MonoBehaviour
         Debug.Log("Collecting resources");
         StopAllCoroutines();
         this.TurnToTarget(target.Position);
-        this.MoveToTarget(target, 5.5f);
+        this.MoveToTarget(target, 4.5f);
         this.CollectResources(target);
     }
 
