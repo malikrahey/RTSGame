@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\UI\ActionBarItem.cs" />
     <Compile Include="Assets\Scripts\Units\AirUnits\AirUnit.cs" />
     <Compile Include="Assets\Scripts\Units\AirUnits\TestPlaneUnit.cs" />
+    <Compile Include="Assets\Scripts\Units\BuildingHealth.cs" />
     <Compile Include="Assets\Scripts\Units\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Units\LandUnits\HeavyTank.cs" />
     <Compile Include="Assets\Scripts\Units\LandUnits\LowCar.cs" />
