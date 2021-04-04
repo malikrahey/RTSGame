@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log("unit hit");
                     Unit other = hit.transform.gameObject.GetComponent<Unit>();
-                    other.IsSelected = true;
+                    other.isSelected = true;
                     if (!selectedUnits.Contains(other))
                     {
                         selectedUnits.Add(other);
@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
                 else if(hit.transform.gameObject.CompareTag("Building"))
                 {
                     Debug.Log("Building clicked ");
+                    ClearSelectedunits();
                     Building building = hit.transform.gameObject.GetComponent<Building>();
                   
                     if (building.GetType() == typeof(UnitFactoryBuilding))
@@ -134,7 +135,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(target.Position);
                 foreach(Unit unit in selectedUnits)
                 {
-                    unit.CurrentTarget = target;
+                    unit.currentTarget = target;
                     unit.InteractWithTarget(target);
                 }
             }
@@ -185,7 +186,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach(Unit unit in selectedUnits)
         {
-            unit.IsSelected = false;
+            unit.isSelected = false;
         }
         selectedUnits.Clear();
         UIManager.Instance.selectedUnitsText.text = "";
