@@ -66,9 +66,11 @@
   <ItemGroup>
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Buildings\Building.cs" />
+    <Compile Include="Assets\Scripts\Buildings\BuildingHealth.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingProject.cs" />
     <Compile Include="Assets\Scripts\Buildings\Factory.cs" />
     <Compile Include="Assets\Scripts\Buildings\InProgressBuilding.cs" />
+    <Compile Include="Assets\Scripts\Buildings\ProgressBarContainer.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnitBuildings\Garage.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnitBuildings\Hangar.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnitBuildings\UnitFactoryBuilding.cs" />

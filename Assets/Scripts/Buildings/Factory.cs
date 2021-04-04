@@ -7,6 +7,8 @@ public class Factory : Building
     private void OnEnable()
     {
         StartCoroutine(ProduceResources());
+        BaseHealth = 100;
+        CurrentHealth = 100;
     }
     private IEnumerator ProduceResources()
     {

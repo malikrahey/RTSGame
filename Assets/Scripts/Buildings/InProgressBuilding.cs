@@ -6,7 +6,7 @@ using UnityEngine;
 public class InProgressBuilding : MonoBehaviour
 {
 
-    public float BuildProgress { get; set; }
+    public float BuildProgress = 0;
 
     public float Health { get; set; }
 
@@ -17,6 +17,24 @@ public class InProgressBuilding : MonoBehaviour
     private BuildingProject project;
 
     private bool isNotifiedOfFinish = false;
+
+    private ProgressBarContainer progressBar;
+
+    private void Start()
+    {
+        BuildProgress = 0;
+        progressBar = this.gameObject.GetComponentInChildren<ProgressBarContainer>();
+        if (progressBar == null)
+        {
+            GameObject buildingProgressGO = Instantiate(GameManager.Instance.BuildingprogressPrefab) as GameObject;
+            buildingProgressGO.transform.position = new Vector3(50, 50, -2);
+            buildingProgressGO.transform.rotation = Quaternion.Euler(-45, 180, 0);
+            buildingProgressGO.SetActive(false);
+            progressBar = buildingProgressGO.GetComponent<ProgressBarContainer>();
+            Transform canvas = this.gameObject.transform.GetChild(0);
+            buildingProgressGO.transform.SetParent(canvas, false);
+        }
+    }
 
     public void StartBuilding()
     {
@@ -38,6 +56,7 @@ public class InProgressBuilding : MonoBehaviour
 
     public void ProgressBuild(float unitBuildSpeed)
     {
+        this.progressBar.gameObject.SetActive(true);
         this.BuildProgress += unitBuildSpeed / project.buildTime;
     }
 

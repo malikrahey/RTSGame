@@ -250,6 +250,10 @@ MonoBehaviour:
     type: 3}
   constructionPrefab: {fileID: 5819489123865518600, guid: c18351ff97ab3b542ba8faa0308f2a43,
     type: 3}
+  BuildingHealthPrefab: {fileID: 6512609562493385747, guid: ea2298639a904694c9589349272b12e9,
+    type: 3}
+  BuildingprogressPrefab: {fileID: 8553071033932485621, guid: 4e07ae381b4c21b4abf4808acd2f4117,
+    type: 3}
   Player: {fileID: 1160752377}
   buildingProjects:
   - {fileID: 5302393391800502375, guid: 3976d09499be41f43a73a43f7c0ce14e, type: 3}

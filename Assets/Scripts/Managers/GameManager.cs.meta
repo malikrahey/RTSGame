@@ -3,7 +3,11 @@ guid: 5d8bdb5570dfe1a4085858bc7f2e92ca
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - healthBarPrefab: {instanceID: 0}
+  - constructionPrefab: {instanceID: 0}
+  - BuildingHealthPrefab: {instanceID: 0}
+  - Player: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
