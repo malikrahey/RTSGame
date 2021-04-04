@@ -25,14 +25,29 @@ public class Building : MonoBehaviour
             buildingHealthGO.transform.SetParent(canvas, false);
         }
     }
-    public void FadeAway()
+    public void DeathFade()
     {
+        MeshRenderer renderer = this.gameObject.GetComponent<MeshRenderer>();
 
+        Material[] materials = renderer.materials;
+        StopAllCoroutines();
+        StartCoroutine(FadeAwayCoroutine(materials));
     }
 
-    private IEnumerator FadeAwayCoroutine()
+    private IEnumerator FadeAwayCoroutine(Material[] materials)
     {
-        yield return null;
+        while (materials[0].color.a > 0)
+        {
+            foreach (Material material in materials)
+            {
+
+                material.color = new Color(material.color.r, material.color.g, material.color.b, material.color.a - 0.01f);
+            }
+
+            yield return new WaitForSeconds(0.01f);
+        }
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 
 }

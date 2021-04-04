@@ -8,7 +8,8 @@ public enum TargetType
     POSITION,
     ENEMY,
     RESOURCE,
-    CONSTRUCTION
+    CONSTRUCTION,
+    BUILDING
 }
 
 public class Target
@@ -20,6 +21,8 @@ public class Target
     public ResourceBehaviour ResourceGroup {get;set;}
 
     public InProgressBuilding ConstructionBuilding { get; set; }
+
+    public Building building;
 
     public TargetType Type { get; set; }
 
@@ -61,6 +64,13 @@ public class Target
         ConstructionBuilding = inProgressBuilding;
         Position = inProgressBuilding.transform.position;
         Type = TargetType.CONSTRUCTION;
+    }
+
+    public Target(Building building)
+    {
+        this.building = building;
+        Position = building.transform.position;
+        Type = TargetType.BUILDING;
     }
 
 
