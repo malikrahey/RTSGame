@@ -11,9 +11,8 @@ public class Unit : MonoBehaviour
 
     public string unitName;
 
-    [SerializeField]
-    public bool IsSelected { get; set; } //is Selected by the player
-    public bool IsBeingAttacked { get; set; }
+    public bool isSelected = false; //is Selected by the player
+    public bool isBeingAttacked = false;
 
     public bool IsIdle { get; set; }
     protected bool IsCarryingResources { get; set; } //is carrying resources
@@ -34,7 +33,7 @@ public class Unit : MonoBehaviour
 
     protected float BuildSpeed { get; set; }
 
-    public Target CurrentTarget { get; set; }
+    public Target currentTarget;
 
     private HealthBar healthBar;
 
@@ -112,8 +111,8 @@ public class Unit : MonoBehaviour
     {
         StopAllCoroutines();
         this.TurnToTarget(target.Position);
-        this.MoveToTarget(CurrentTarget, AttackRange);
-        this.AttackEnemy(CurrentTarget.TargetUnit);
+        this.MoveToTarget(currentTarget, AttackRange);
+        this.AttackEnemy(currentTarget.TargetUnit);
     }
 
     private void TurnToTarget(Vector3 targetPosition)
@@ -151,7 +150,7 @@ public class Unit : MonoBehaviour
     private void AttackEnemy(Unit other)
     {
         StartCoroutine(AttackEnemyCoroutine(other));
-        other.SetBeingAttacked(true);
+        other.SetBeingAttacked(true, this);
     }
 
     private IEnumerator AttackEnemyCoroutine(Unit other)
@@ -164,6 +163,7 @@ public class Unit : MonoBehaviour
             Debug.Log("shot fired");
             yield return new WaitForSeconds(this.AttackSpeed);
         }
+        currentTarget = null;
         other.DeathFade();
     }
 
@@ -184,6 +184,7 @@ public class Unit : MonoBehaviour
             Debug.Log(inProgressBuilding.BuildProgress);
             yield return new WaitForSeconds(1);
         }
+        currentTarget = null;
         inProgressBuilding.FinishBuilding();
     }
     
@@ -215,17 +216,23 @@ public class Unit : MonoBehaviour
      * Handles all needed functions calls when a unit is being attakced
      * 
      */
-    public void SetBeingAttacked(bool isBeingAttacked)
+    public void SetBeingAttacked(bool isBeingAttacked, Unit attackingUnit)
     {
         Debug.Log("Is being attacked: " + isBeingAttacked.ToString());
-        this.IsBeingAttacked = isBeingAttacked;
+        if (currentTarget == null)
+        {
+            this.Retaliate(attackingUnit);
+        }
+        this.isBeingAttacked = isBeingAttacked;
         this.healthBar.gameObject.SetActive(isBeingAttacked);
-      
+        
     }
 
-    private void Retaliate()
+    private void Retaliate(Unit attackingUnit)
     {
-
+        Target target = new Target(attackingUnit);
+        this.TurnToTarget(target.Position);
+        this.AttackEnemy(target.TargetUnit);
     }
 
     private void CollectResources(Target target)
@@ -242,5 +249,6 @@ public class Unit : MonoBehaviour
             GameManager.Instance.Player.AmountOfResources += resource.TakeResources(this.CollectionRate);
             yield return new WaitForSeconds(1);
         }
+        currentTarget = null;
     }
 }
