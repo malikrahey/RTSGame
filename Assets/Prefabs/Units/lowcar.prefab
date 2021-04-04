@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1a9b4b70279f04a93b8c3a53f82106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: Low Car
 --- !u!1 &2330008604128888978
 GameObject:
   m_ObjectHideFlags: 0

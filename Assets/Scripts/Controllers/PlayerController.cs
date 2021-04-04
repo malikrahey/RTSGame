@@ -14,11 +14,16 @@ public class PlayerController : MonoBehaviour
 
     public int AmountOfResources { get; set; }
 
-    private List<Unit> selectedUnits = new List<Unit>();
+    public List<Unit> selectedUnits = new List<Unit>();
+
+    
 
     public GameObject carriedSite;
     public Building selectedBuilding;
     private bool isCarryingSite;
+
+    public GameObject indicatorArrow;
+    private Coroutine arrowCoroutine;
 
     void Start()
     {
@@ -59,12 +64,18 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log("unit hit");
                     Unit other = hit.transform.gameObject.GetComponent<Unit>();
-                    other.IsSelected = true;
-                    selectedUnits.Add(other);
+                    other.isSelected = true;
+                    if (!selectedUnits.Contains(other))
+                    {
+                        selectedUnits.Add(other);
+                        UIManager.Instance.selectedUnitsText.text += other.unitName + '\n';
+                        UIManager.Instance.selectedUnitsText.gameObject.SetActive(true);
+                    }
                 }
                 else if(hit.transform.gameObject.CompareTag("Building"))
                 {
                     Debug.Log("Building clicked ");
+                    ClearSelectedunits();
                     Building building = hit.transform.gameObject.GetComponent<Building>();
                   
                     if (building.GetType() == typeof(UnitFactoryBuilding))
@@ -116,6 +127,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    DisplayArrowAtPoint(hit.point);
                     target = new Target(hit.point);
                 }
 
@@ -123,7 +135,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(target.Position);
                 foreach(Unit unit in selectedUnits)
                 {
-                    unit.CurrentTarget = target;
+                    unit.currentTarget = target;
                     unit.InteractWithTarget(target);
                 }
             }
@@ -131,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Escape))
         {
-            Application.Quit();
+            //Enable Pause menu
         }
         if(Input.GetKeyDown(KeyCode.R))
         {
@@ -139,10 +151,21 @@ public class PlayerController : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.B))
         {
+            ClearSelectedunits();
             //place construction site
-            GameObject site = Instantiate(GameManager.Instance.constructionPrefab) as GameObject;
-            carriedSite = site;
-            isCarryingSite = true;
+            if(carriedSite == null)
+            {
+                GameObject site = Instantiate(GameManager.Instance.constructionPrefab) as GameObject;
+                carriedSite = site;
+                isCarryingSite = true;
+            }
+            else
+            {
+                Destroy(carriedSite.gameObject);
+                carriedSite = null;
+                isCarryingSite = false;
+            }
+            
         }
         if(carriedSite != null)
         {
@@ -163,8 +186,32 @@ public class PlayerController : MonoBehaviour
     {
         foreach(Unit unit in selectedUnits)
         {
-            unit.IsSelected = false;
+            unit.isSelected = false;
         }
         selectedUnits.Clear();
+        UIManager.Instance.selectedUnitsText.text = "";
+        UIManager.Instance.selectedUnitsText.gameObject.SetActive(false);
+    }
+
+    private void DisplayArrowAtPoint(Vector3 position)
+    {
+        if(arrowCoroutine != null) StopCoroutine(arrowCoroutine);
+        indicatorArrow.transform.position = new Vector3(position.x, position.y + 2, position.z);
+        arrowCoroutine = StartCoroutine(DisplayArrowCoroutine());
+
+    }
+
+    private IEnumerator DisplayArrowCoroutine()
+    {
+        indicatorArrow.SetActive(true);
+        int counts = 0;
+        while(counts < 200)
+        {
+            indicatorArrow.transform.Rotate(new Vector3(0, 1, 0));
+            yield return new WaitForSeconds(0.005f);
+            counts++;
+        }
+        
+        indicatorArrow.SetActive(false);
     }
 }

@@ -211,3 +211,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f757c01be3d50a24b9d1bee71d3cdcae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: Heavy Tank
