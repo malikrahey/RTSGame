@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed = 5.0f;
     private float scrollSpeed = -30.0f;
 
-    public int AmountOfResources { get; set; }
+    public int AmountOfResources = 0;
 
     public List<Unit> selectedUnits = new List<Unit>();
 
@@ -123,6 +123,12 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log("Construction hit");
                     InProgressBuilding building = hit.transform.gameObject.GetComponent<InProgressBuilding>();
+                    target = new Target(building);
+                }
+                else if(hit.transform.gameObject.CompareTag("Building"))
+                {
+                    Debug.Log("Building hit");
+                    Building building = hit.transform.gameObject.GetComponent<Building>();
                     target = new Target(building);
                 }
                 else

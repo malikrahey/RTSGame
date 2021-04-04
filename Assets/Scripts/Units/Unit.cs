@@ -75,6 +75,9 @@ public class Unit : MonoBehaviour
             case TargetType.CONSTRUCTION:
                 this.HandleConstruction(target);
                 break;
+            case TargetType.BUILDING:
+                this.HandleAttackBuilding(target);
+                break;
             default:
                 break;
 
@@ -102,8 +105,9 @@ public class Unit : MonoBehaviour
     {
         Debug.Log("Collecting resources");
         StopAllCoroutines();
+        Debug.Log(target.Position);
         this.TurnToTarget(target.Position);
-        this.MoveToTarget(target, 4.5f);
+        this.MoveToTarget(target, 2.5f);
         this.CollectResources(target);
     }
 
@@ -186,6 +190,33 @@ public class Unit : MonoBehaviour
         }
         currentTarget = null;
         inProgressBuilding.FinishBuilding();
+    }
+
+    private void HandleAttackBuilding(Target target)
+    {
+        StopAllCoroutines();
+        this.TurnToTarget(target.Position);
+        this.MoveToTarget(currentTarget, AttackRange);
+        this.AttackBuilding(currentTarget.building);
+    }
+
+    private void AttackBuilding(Building building)
+    {
+        StartCoroutine(AttackBuildingCoroutine(building));
+    }
+
+    private IEnumerator AttackBuildingCoroutine(Building building)
+    {
+        while (Vector3.Distance(transform.position, building.transform.position) > (this.AttackRange + 2f)) { yield return null; }
+        while (building.CurrentHealth > 0 && Vector3.Distance(transform.position, building.transform.position) < (this.AttackRange + 2f))
+        {
+            Debug.Log(Vector3.Distance(transform.position, building.transform.position));
+            building.CurrentHealth -= this.AttackStrength;
+            Debug.Log("shot fired");
+            yield return new WaitForSeconds(this.AttackSpeed);
+        }
+        currentTarget = null;
+        building.DeathFade();
     }
     
     public void DeathFade()
