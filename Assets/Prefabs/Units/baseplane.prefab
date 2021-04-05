@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: BasePlane
+  isSelected: 0
+  isBeingAttacked: 0
 --- !u!64 &-8568879530022009153
 MeshCollider:
   m_ObjectHideFlags: 0
