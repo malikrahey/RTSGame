@@ -28,12 +28,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5089262436763697300}
-  - {fileID: 8601119809972708320}
-  - {fileID: 6077825738744168088}
+  - {fileID: 3633964377883876359}
+  - {fileID: 4876104291277296495}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2188798798259319178
+--- !u!1001 &3068669920790479109
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -43,7 +43,7 @@ PrefabInstance:
     - target: {fileID: 833217762317619730, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
       propertyPath: m_Name
-      value: ActionBarButton (1)
+      value: ActionBarButton (5)
       objectReference: {fileID: 0}
     - target: {fileID: 2190576182761101994, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
@@ -133,12 +133,12 @@ PrefabInstance:
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 79.06201
+      value: 202
       objectReference: {fileID: 0}
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -142.37628
+      value: -143.1
       objectReference: {fileID: 0}
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
@@ -157,11 +157,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0e97a7b3700cfd4e9206d0f548fc5f2, type: 3}
---- !u!224 &8601119809972708320 stripped
+--- !u!224 &4876104291277296495 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
     type: 3}
-  m_PrefabInstance: {fileID: 2188798798259319178}
+  m_PrefabInstance: {fileID: 3068669920790479109}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3431124116914688766
 PrefabInstance:
@@ -293,7 +293,7 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3431124116914688766}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4424147004752506098
+--- !u!1001 &6580624738035617389
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -303,12 +303,12 @@ PrefabInstance:
     - target: {fileID: 833217762317619730, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
       propertyPath: m_Name
-      value: ActionBarButton (2)
+      value: ActionBarButton (4)
       objectReference: {fileID: 0}
     - target: {fileID: 2190576182761101994, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
       propertyPath: Name
-      value: Factory
+      value: Hangar
       objectReference: {fileID: 0}
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
@@ -323,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
@@ -393,12 +393,12 @@ PrefabInstance:
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 204.76201
+      value: 73
       objectReference: {fileID: 0}
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -142.33627
+      value: -143
       objectReference: {fileID: 0}
     - target: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
         type: 3}
@@ -417,9 +417,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0e97a7b3700cfd4e9206d0f548fc5f2, type: 3}
---- !u!224 &6077825738744168088 stripped
+--- !u!224 &3633964377883876359 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7583353740572480106, guid: c0e97a7b3700cfd4e9206d0f548fc5f2,
     type: 3}
-  m_PrefabInstance: {fileID: 4424147004752506098}
+  m_PrefabInstance: {fileID: 6580624738035617389}
   m_PrefabAsset: {fileID: 0}

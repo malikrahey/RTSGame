@@ -41,7 +41,7 @@ public class Target
     {
         this.Position = target.transform.position;
         this.TargetUnit = target;
-        this.Type = TargetType.ENEMY;
+        this.Type = TargetType.POSITION;
     }
 
     public Target(Unit target, TargetType type)

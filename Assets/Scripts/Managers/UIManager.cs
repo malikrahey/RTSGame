@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public Text resourceText;
     public Text timerText;
     public Text selectedUnitsText;
+    public Text notEnoughResourceText;
     public GameObject actionBar;
 
     public GameObject buildingActionBar;
@@ -49,6 +50,18 @@ public class UIManager : MonoBehaviour
     public void ClearActionBar()
     {
 
+    }
+
+    public void DisplayNotEnoughResourceText()
+    {
+        StartCoroutine(NotEnoughResourceTextCoroutine());
+    }
+
+    private IEnumerator NotEnoughResourceTextCoroutine()
+    {
+        notEnoughResourceText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        notEnoughResourceText.gameObject.SetActive(false);
     }
   
 }
