@@ -5,7 +5,7 @@ using UnityEngine;
 public class AirUnit : Unit
 {
 
-    protected float elevationHeight;
+    public float elevationHeight;
 
     protected override IEnumerator MoveToPositionCoroutine(Vector3 position)
     {

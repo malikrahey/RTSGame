@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class Unit : MonoBehaviour
 {
 
@@ -17,21 +19,22 @@ public class Unit : MonoBehaviour
     public bool IsIdle { get; set; }
     protected bool IsCarryingResources { get; set; } //is carrying resources
 
-    protected float BaseSpeed { get; set; }  //base moving speed for the unit
-    protected float TransportatingModifier { get; } //speed modifier for when carrying resources
-    public float BaseHealth { get; set; } //health of the unit
+    public float BaseSpeed;  //base moving speed for the unit
+    public float BaseHealth; //health of the unit
 
     public float CurrentHealth { get; set; }
 
-    protected float AttackRange { get; set; }
+    public float AttackRange;
 
-    protected float AttackSpeed { get; set; }
+    public float AttackSpeed;
 
-    protected float AttackStrength { get; set; }
+    public float AttackStrength;
 
-    protected int CollectionRate { get; set; }
+    public int CollectionRate;
 
-    protected float BuildSpeed { get; set; }
+    public Owner owner;
+
+    public float BuildSpeed;
 
     public Target currentTarget;
 
@@ -44,7 +47,6 @@ public class Unit : MonoBehaviour
         healthBar = this.gameObject.GetComponentInChildren<HealthBar>();
         //lazy instantiation
         IsIdle = true;
-
 
         if(healthBar == null)
         {
@@ -96,7 +98,7 @@ public class Unit : MonoBehaviour
     {
         while(Vector3.Distance(position,this.gameObject.transform.position) > 0.05)
         {
-            this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, position, BaseSpeed/1000);
+            this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, position, BaseSpeed * Time.deltaTime);
             yield return null;
         }
     }
@@ -146,7 +148,7 @@ public class Unit : MonoBehaviour
     {
         while(Vector3.Distance(target.Position, transform.position) > range)
         {
-            this.gameObject.transform.position = Vector3.Lerp(this.gameObject.transform.position, target.Position, BaseSpeed / 1000);
+            this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, target.Position, BaseSpeed * Time.deltaTime);
             yield return null;
         }
     }
@@ -210,7 +212,7 @@ public class Unit : MonoBehaviour
         while (Vector3.Distance(transform.position, building.transform.position) > (this.AttackRange + 2f)) { yield return null; }
         while (building.CurrentHealth > 0 && Vector3.Distance(transform.position, building.transform.position) < (this.AttackRange + 2f))
         {
-            Debug.Log(Vector3.Distance(transform.position, building.transform.position));
+            Debug.Log("building health: " + building.CurrentHealth.ToString());
             building.CurrentHealth -= this.AttackStrength;
             Debug.Log("shot fired");
             yield return new WaitForSeconds(this.AttackSpeed);
@@ -226,6 +228,7 @@ public class Unit : MonoBehaviour
         Material[] materials = renderer.materials;
         StopAllCoroutines();
         StartCoroutine(DeathFadeAwayCoroutine(materials));
+        GameManager.Instance.Player.selectedUnits.Remove(this);
     }
 
     private IEnumerator DeathFadeAwayCoroutine(Material[] materials)
@@ -277,7 +280,16 @@ public class Unit : MonoBehaviour
         while (Vector3.Distance(resource.transform.position, this.transform.position) > 7) yield return null;
         while(resource.ResourcesRemaining > 0)
         {
-            GameManager.Instance.Player.AmountOfResources += resource.TakeResources(this.CollectionRate);
+            switch (owner)
+            {
+                case Owner.PLAYER:
+                    GameManager.Instance.Player.AmountOfResources += resource.TakeResources(this.CollectionRate);
+                    break;
+                case Owner.AI:
+                    GameManager.Instance.AIPlayer.amountOfResources += resource.TakeResources(this.CollectionRate);
+                    break;
+            }
+            
             yield return new WaitForSeconds(1);
         }
         currentTarget = null;

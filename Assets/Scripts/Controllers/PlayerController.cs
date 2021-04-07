@@ -77,13 +77,21 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Building clicked ");
                     ClearSelectedunits();
                     Building building = hit.transform.gameObject.GetComponent<Building>();
-                  
-                    if (building.GetType() == typeof(UnitFactoryBuilding))
+                  if(building.owner == Owner.PLAYER)
                     {
-                        UnitFactoryBuilding unitFactory = building as UnitFactoryBuilding;
-                        unitFactory.SetActionBar(true);
-                        selectedBuilding = unitFactory;
-                        
+                        if (building.GetType() == typeof(UnitFactoryBuilding))
+                        {
+                            UnitFactoryBuilding unitFactory = building as UnitFactoryBuilding;
+                            unitFactory.SetActionBar(true);
+                            selectedBuilding = unitFactory;
+
+                        }
+                        else if (building.GetType() == typeof(MainBase))
+                        {
+                            MainBase mainBase = building as MainBase;
+                            mainBase.baseActionBar.SetActive(true);
+                            selectedBuilding = mainBase;
+                        }
                     }
                 }
                 else

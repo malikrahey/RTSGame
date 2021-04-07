@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     private static UIManager _instance;
@@ -14,13 +14,17 @@ public class UIManager : MonoBehaviour
     public Text timerText;
     public Text selectedUnitsText;
     public Text notEnoughResourceText;
+    public Text winnerText;
+
     public GameObject actionBar;
 
     public GameObject buildingActionBar;
     public GameObject hangarActionBar;
     public GameObject garageActionBar;
 
-    private int[] timer = new int[2];
+    public GameObject gameOverPanel;
+
+    private float Timer;
 
 
     private void Awake()
@@ -30,13 +34,18 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-
+        Timer = 0.0f;
     }
 
     private void Update()
     {
-        resourceText.text = GameManager.Instance.Player.AmountOfResources.ToString() + " : [] ";
-
+        resourceText.text = GameManager.Instance.Player.AmountOfResources.ToString();
+        Timer += Time.deltaTime;
+        int mins = (int)Timer / 60;
+        int secs = (int)Timer % 60;
+        string minsText = mins >= 10 ? mins.ToString() : "0" + mins.ToString();
+        string secsText = secs >= 10 ? secs.ToString() : "0" + secs.ToString();
+        timerText.text = minsText + ":" + secsText;
     }
 
     public void AddActionBarItemToBar(ActionBarItem item)
@@ -64,4 +73,14 @@ public class UIManager : MonoBehaviour
         notEnoughResourceText.gameObject.SetActive(false);
     }
   
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
 }

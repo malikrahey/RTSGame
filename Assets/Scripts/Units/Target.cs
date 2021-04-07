@@ -9,7 +9,8 @@ public enum TargetType
     ENEMY,
     RESOURCE,
     CONSTRUCTION,
-    BUILDING
+    BUILDING,
+    FRIENDLY
 }
 
 public class Target
@@ -41,7 +42,7 @@ public class Target
     {
         this.Position = target.transform.position;
         this.TargetUnit = target;
-        this.Type = TargetType.POSITION;
+        this.Type = TargetType.FRIENDLY;
     }
 
     public Target(Unit target, TargetType type)
@@ -71,6 +72,13 @@ public class Target
         this.building = building;
         Position = building.transform.position;
         Type = TargetType.BUILDING;
+    }
+
+    public Target(Building building, TargetType type)
+    {
+        this.building = building;
+        Position = building.transform.position;
+        Type = type;
     }
 
 

@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public enum ActionType
 { 
     BUILD_BUILDING,
-    BUILD_UNIT
+    BUILD_UNIT,
+    BUILD_DRONE
 }
 
 
@@ -38,6 +39,9 @@ public class ActionBarItem : MonoBehaviour
                 break;
             case ActionType.BUILD_UNIT:
                 BuildUnit();
+                break;
+            case ActionType.BUILD_DRONE:
+                BuildDrone();
                 break;
             default:
                 break;
@@ -83,6 +87,22 @@ public class ActionBarItem : MonoBehaviour
             UIManager.Instance.DisplayNotEnoughResourceText();
         }
         factory.SetActionBar(false);
+    }
+
+    private void BuildDrone()
+    {
+        MainBase mainBase = GameManager.Instance.Player.selectedBuilding as MainBase;
+        if (BuyItem())
+        {
+
+            UnitMenuItem unit = new UnitMenuItem(Cost, unitItem, name, BuildTime);
+            mainBase.BuildDrone();
+        }
+        else
+        {
+            UIManager.Instance.DisplayNotEnoughResourceText();
+        }
+        mainBase.baseActionBar.SetActive(false);
     }
 
     private bool BuyItem()

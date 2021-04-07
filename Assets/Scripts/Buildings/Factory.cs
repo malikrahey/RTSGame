@@ -13,8 +13,16 @@ public class Factory : Building
     private IEnumerator ProduceResources()
     {
         while(gameObject.activeInHierarchy)
-        {
-            GameManager.Instance.Player.AmountOfResources += 10;
+        {       
+            switch(owner)
+            {
+                case Owner.PLAYER:
+                    GameManager.Instance.Player.AmountOfResources += 10;
+                    break;
+                case Owner.AI:
+                    GameManager.Instance.AIPlayer.amountOfResources += 10;
+                    break;
+            }
             yield return new WaitForSeconds(0.5f);
         }
     }
