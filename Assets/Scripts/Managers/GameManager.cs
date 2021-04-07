@@ -16,8 +16,12 @@ public class GameManager : MonoBehaviour
 
 
     public PlayerController Player;
+    public AIController AIPlayer;
 
     public List<BuildingProject> buildingProjects = new List<BuildingProject>();
+
+    public int numberOfPlayerUnits;
+    public int numberOfAIUnits;
 
     private void Awake()
     {
@@ -31,5 +35,31 @@ public class GameManager : MonoBehaviour
             BuildingProject project = go.GetComponent<BuildingProject>();
             //buildingProjects.Add(project);
         }
+    }
+
+    private void Start()
+    {
+        numberOfPlayerUnits = 2;
+        numberOfAIUnits = 2;
+    }
+
+   
+
+    public void PlayerWins()
+    {
+        UIManager.Instance.winnerText.text = "You win!";
+        EndGame();
+    }
+
+    public void AIWins()
+    {
+        UIManager.Instance.winnerText.text = "You Lost";
+        EndGame();
+    }
+
+    private void EndGame()
+    {
+        Time.timeScale = 0;
+        UIManager.Instance.gameOverPanel.SetActive(true);
     }
 }

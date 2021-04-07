@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e0642619c9390498ddc18f743d9b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 100
   actionBar: {fileID: 0}
   buildingBuildSpeed: 1
 --- !u!1 &7248189016983001088

@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Owner
+{
+    PLAYER,
+    AI
+}
+
 public class Building : MonoBehaviour
 {
-    public float Health { get; set; }
     private BuildingHealth healthbar;
-    public float BaseHealth { get; set; } //health of the unit
+    public float BaseHealth;
 
-    public float CurrentHealth { get; set; }
+    public float CurrentHealth;
 
+    public Owner owner;
 
     private void Start()
     {
@@ -24,8 +30,9 @@ public class Building : MonoBehaviour
             Transform canvas = this.gameObject.transform.GetChild(0);
             buildingHealthGO.transform.SetParent(canvas, false);
         }
+        CurrentHealth = BaseHealth;
     }
-    public void DeathFade()
+    public virtual void DeathFade()
     {
         MeshRenderer renderer = this.gameObject.GetComponent<MeshRenderer>();
 
@@ -34,7 +41,7 @@ public class Building : MonoBehaviour
         StartCoroutine(FadeAwayCoroutine(materials));
     }
 
-    private IEnumerator FadeAwayCoroutine(Material[] materials)
+    protected IEnumerator FadeAwayCoroutine(Material[] materials)
     {
         while (materials[0].color.a > 0)
         {
