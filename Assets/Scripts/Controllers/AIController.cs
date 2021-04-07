@@ -17,6 +17,16 @@ public class AIController : MonoBehaviour
 {
 
     public List<GameObject> unitFactoryPrefabs = new List<GameObject>();
+
+    public BuildingProject factoryProject;
+    public BuildingProject hangarProject;
+    public BuildingProject garageProject;
+
+    public GameObject currentConstructionSite; //AI should never make more than one construction
+                                               //This could be changed to a list if we change it
+
+    public bool isCurrentlyBuilding;
+
     public List<GameObject> airUnitPrefabs = new List<GameObject>();
     public List<GameObject> groundUnitPrefabs = new List<GameObject>();
     public GameObject factoryPrefab;
@@ -33,7 +43,7 @@ public class AIController : MonoBehaviour
     public AIState state;
     public List<Unit> availableUnits = new List<Unit>();
     public List<Building> availableBuildings = new List<Building>();
-    private List<UnitFactoryBuilding> availableFactories = new List<UnitFactoryBuilding>();
+    public List<UnitFactoryBuilding> availableFactories = new List<UnitFactoryBuilding>();
 
 
 
@@ -41,7 +51,7 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         state = AIState.GATHER;
-
+        isCurrentlyBuilding = false;
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemy in enemys)
         {
@@ -101,7 +111,7 @@ public class AIController : MonoBehaviour
         Debug.Log("Gathering");
         if (amountOfResources >= resourceThreshold || availableUnits.Count <= 0) return AIState.BUILDUP;
 
-        Unit scout = availableUnits[0];
+        Unit scout = GetAvailableUnit();
         Debug.Log("Scout is: " + scout.unitName);
         GameObject[] resources = GameObject.FindGameObjectsWithTag("Resource");
         Debug.Log("Resources found: " + resources.Length.ToString());
@@ -136,7 +146,7 @@ public class AIController : MonoBehaviour
     {
         Debug.Log("Building up");
         if (availableUnits.Count > unitThreshold) return AIState.ATTACK;
-        if (amountOfResources < resourceThreshold) return AIState.GATHER;
+        if (amountOfResources < resourceThreshold && !(availableUnits.Count <= 0)) return AIState.GATHER;
 
         if(availableUnits.Count < 1)
         {
@@ -148,6 +158,13 @@ public class AIController : MonoBehaviour
                 amountOfResources -= 50;
             }
         }
+        else if(currentConstructionSite != null)
+        {
+            Unit scout = GetAvailableUnit();
+            InProgressBuilding inProgressBuilding = currentConstructionSite.GetComponent<InProgressBuilding>();
+            Target target = new Target(inProgressBuilding);
+            scout.InteractWithTarget(target);
+        }
         else if(availableBuildings.Count <= 1 )
         {
             Debug.Log("Building factory");
@@ -157,13 +174,18 @@ public class AIController : MonoBehaviour
                 mainBase.transform.position.z + Random.Range(-10, 10)
                 );
 
-            GameObject factory = Instantiate(factoryPrefab) as GameObject;
-            factory.transform.position = buildingPosition;
-            factory.SetActive(true);
-            Factory factoryScript = factory.GetComponent<Factory>();
-            Debug.Log(factoryScript.owner);
-            factoryScript.owner = Owner.AI;
-            availableBuildings.Add(factoryScript);
+            GameObject site = Instantiate(GameManager.Instance.constructionPrefab) as GameObject;
+            site.transform.position = buildingPosition;
+            site.SetActive(true);
+            InProgressBuilding inProgressBuilding = site.GetComponent<InProgressBuilding>();
+            inProgressBuilding.project = factoryProject;
+            currentConstructionSite = site;
+
+            //old lets change
+            //GameObject factory = Instantiate(factoryPrefab) as GameObject;
+            //factory.transform.position = buildingPosition;
+            //factory.SetActive(true);
+
         }
         else if(availableFactories.Count < 2 && availableUnits.Count < maxUnits)
         {
@@ -173,13 +195,21 @@ public class AIController : MonoBehaviour
                mainBase.transform.position.z + Random.Range(-20, 20)
                );
 
-            GameObject factory = Instantiate(unitFactoryPrefabs[Random.Range(0,1)]) as GameObject;
-            factory.transform.position = buildingPosition;
-            factory.SetActive(true);
-            UnitFactoryBuilding factoryScript = factory.GetComponent<UnitFactoryBuilding>();
-            factoryScript.owner = Owner.AI;
-            availableFactories.Add(factoryScript);
-            availableBuildings.Add(factoryScript);
+            GameObject site = Instantiate(GameManager.Instance.constructionPrefab) as GameObject;
+            site.transform.position = buildingPosition;
+            site.SetActive(true);
+            InProgressBuilding inProgressBuilding = site.GetComponent<InProgressBuilding>();
+            inProgressBuilding.project = availableFactories.Count == 0 ? hangarProject : garageProject;
+            currentConstructionSite = site;
+
+
+            //GameObject factory = Instantiate(unitFactoryPrefabs[Random.Range(0,1)]) as GameObject;
+            //factory.transform.position = buildingPosition;
+            //factory.SetActive(true);
+            //UnitFactoryBuilding factoryScript = factory.GetComponent<UnitFactoryBuilding>();
+            //factoryScript.owner = Owner.AI;
+            //availableFactories.Add(factoryScript);
+            //availableBuildings.Add(factoryScript);
         }
         else
         {
@@ -209,7 +239,21 @@ public class AIController : MonoBehaviour
         return AIState.BUILDUP;
     }
 
+    private Unit GetAvailableUnit()
+    {
+        Unit unit = null;
 
+        foreach(Unit availableUnit in availableUnits)
+        {
+            if(availableUnit.currentTarget == null)
+            {
+                unit = availableUnit;
+                break;
+            }
+        }
+
+        return unit;
+    }
     private AIState Attack()
     {
         return AIState.GATHER;

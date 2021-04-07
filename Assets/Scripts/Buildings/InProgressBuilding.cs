@@ -13,8 +13,7 @@ public class InProgressBuilding : MonoBehaviour
     public bool IsBuilding { get; set; }
     public string BuildName { get; set; }
 
-    [SerializeField]
-    private BuildingProject project;
+    public BuildingProject project;
 
     private bool isNotifiedOfFinish = false;
 
@@ -36,9 +35,16 @@ public class InProgressBuilding : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Health = 100;
+        BuildProgress = 0;
+    }
+
     public void StartBuilding()
     {
         Debug.Log(BuildName);
+        //This is shit, blame other classes for making me rush this 
         foreach(BuildingProject project in GameManager.Instance.buildingProjects)
         {
 
@@ -46,13 +52,13 @@ public class InProgressBuilding : MonoBehaviour
             if(project.buildingName == BuildName)
             {
                 Debug.Log("Match found");
-                this.project = project;
-                Debug.Log(project.buildingPrefab);
+                this.project = project;                //this was private before so this entire thing
+                Debug.Log(project.buildingPrefab);     //can probably be changed to not be shit anymore
             }
         }
-        Health = 100;
-        BuildProgress = 0;
     }
+
+    
 
     public void ProgressBuild(float unitBuildSpeed)
     {
@@ -67,9 +73,27 @@ public class InProgressBuilding : MonoBehaviour
         Vector3 pos = transform.position;
         GameObject newBuilding = Instantiate(project.buildingPrefab) as GameObject;
         newBuilding.transform.position = transform.position;
+
+        Building building = newBuilding.GetComponent<Building>();
+        if (building.owner == Owner.AI) NotifyAI(building);
+
         transform.gameObject.SetActive(false);
         Destroy(this.gameObject);
 
     }
+
+    // probably shouldn't be done here but its 2am and this is due tomorrow
+    public void NotifyAI(Building building) 
+    {
+        GameManager.Instance.AIPlayer.availableBuildings.Add(building);
+        GameManager.Instance.AIPlayer.currentConstructionSite = null;
+
+        if(building.GetType() == typeof(UnitFactoryBuilding))
+        {
+            GameManager.Instance.AIPlayer.availableFactories.Add((UnitFactoryBuilding)building);
+        }
+
+    }
+
 }
 

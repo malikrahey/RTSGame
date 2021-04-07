@@ -113,7 +113,6 @@ GameObject:
   - component: {fileID: 5093022261676207038}
   - component: {fileID: 4707466290379923167}
   - component: {fileID: 875930484184620382}
-  - component: {fileID: 9097901611454917976}
   m_Layer: 0
   m_Name: enemyBasePlane (1)
   m_TagString: Enemy
@@ -213,6 +212,8 @@ MonoBehaviour:
   AttackStrength: 3
   CollectionRate: 10
   owner: 1
+  BuildSpeed: 5
+  elevationHeight: 5
 --- !u!64 &5093022261676207038
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -291,25 +292,3 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &9097901611454917976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6181384313327286042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f757c01be3d50a24b9d1bee71d3cdcae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: 
-  isSelected: 0
-  isBeingAttacked: 0
-  BaseSpeed: 3
-  BaseHealth: 200
-  AttackRange: 15
-  AttackSpeed: 0.4
-  AttackStrength: 5
-  CollectionRate: 10
-  owner: 0

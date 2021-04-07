@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
+        if (Time.timeScale == 0) return; //If game is paused or ended don't allow input
 
         int xDir = Convert.ToInt32(Input.GetKey(KeyCode.D)) - Convert.ToInt32(Input.GetKey(KeyCode.A));
         int zDir = Convert.ToInt32(Input.GetKey(KeyCode.W)) - Convert.ToInt32(Input.GetKey(KeyCode.S));
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Escape))
         {
-            //Enable Pause menu
+            GameManager.Instance.PauseGame();
         }
         if(Input.GetKeyDown(KeyCode.R))
         {

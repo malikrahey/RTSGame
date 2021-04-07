@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject garageActionBar;
 
     public GameObject gameOverPanel;
+    public GameObject pauseMenu;
 
     private float Timer;
 
@@ -83,4 +84,9 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
 }

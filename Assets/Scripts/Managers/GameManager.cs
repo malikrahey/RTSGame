@@ -62,4 +62,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         UIManager.Instance.gameOverPanel.SetActive(true);
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        UIManager.Instance.pauseMenu.SetActive(true);
+    }
 }

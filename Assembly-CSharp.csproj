@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Units\LandUnits\LowCar.cs" />
     <Compile Include="Assets\Scripts\Units\Target.cs" />
     <Compile Include="Assets\Scripts\Units\Unit.cs" />
+    <Compile Include="Assets\SoundManager.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

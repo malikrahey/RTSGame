@@ -636,6 +636,7 @@
     <Compile Include="Assets\Scripts\Units\LandUnits\LowCar.cs" />
     <Compile Include="Assets\Scripts\Units\Target.cs" />
     <Compile Include="Assets\Scripts\Units\Unit.cs" />
+    <Compile Include="Assets\SoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />

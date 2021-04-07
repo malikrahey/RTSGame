@@ -217,7 +217,8 @@ public class Unit : MonoBehaviour
             Debug.Log("shot fired");
             yield return new WaitForSeconds(this.AttackSpeed);
         }
-        currentTarget = null;
+        //currentTarget = null;  This might be causing a crash somewhere - Nope wasn't this 
+        //                                                                 but I think it's useless anyway
         building.DeathFade();
     }
     
@@ -243,11 +244,18 @@ public class Unit : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f) ;
         }
-        this.gameObject.SetActive(false);
+
+        KillUnit();
     }
 
+    private void KillUnit()
+    {
+        StopAllCoroutines();
+        if (owner == Owner.AI) GameManager.Instance.AIPlayer.availableUnits.Remove(this);
+        Destroy(this.gameObject);
+    }
     /*
-     * Handles all needed functions calls when a unit is being attakced
+     * Handles all needed functions calls when a unit is being attacked
      * 
      */
     public void SetBeingAttacked(bool isBeingAttacked, Unit attackingUnit)
