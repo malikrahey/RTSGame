@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public int AmountOfResources = 0;
 
     public List<Unit> selectedUnits = new List<Unit>();
-
+    public List<Unit> availableUnits = new List<Unit>();
     
 
     public GameObject carriedSite;

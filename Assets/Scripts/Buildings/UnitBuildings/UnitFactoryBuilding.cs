@@ -51,6 +51,8 @@ public class UnitFactoryBuilding : Building
             yield return new WaitForSeconds(1);
         }
         GameObject go = Instantiate(unit.itemUnit) as GameObject;
+        Unit unitScript = go.GetComponent<Unit>();
+        GameManager.Instance.Player.availableUnits.Add(unitScript); //AI unit building doesnt go through here so this is fine
         go.transform.position = new Vector3(transform.position.x + 5, transform.position.y, transform.position.z);
 
     }
