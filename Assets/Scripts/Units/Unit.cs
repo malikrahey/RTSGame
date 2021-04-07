@@ -22,7 +22,7 @@ public class Unit : MonoBehaviour
     public float BaseSpeed;  //base moving speed for the unit
     public float BaseHealth; //health of the unit
 
-    public float CurrentHealth { get; set; }
+    public float CurrentHealth;
 
     public float AttackRange;
 
@@ -59,6 +59,7 @@ public class Unit : MonoBehaviour
             healthBarGO.transform.SetParent(canvas, false);
 
         }
+        CurrentHealth = BaseHealth;
     }
 
     public void InteractWithTarget(Target target)
@@ -161,7 +162,9 @@ public class Unit : MonoBehaviour
 
     private IEnumerator AttackEnemyCoroutine(Unit other)
     {
+        if (other.CurrentHealth <= 0) yield break; //throwing these in places trying to fix a crash
         while (Vector3.Distance(transform.position, other.transform.position) > (this.AttackRange + 2f)) { yield return null; }
+        if (other.CurrentHealth <= 0) yield break;
         while (other.CurrentHealth > 0 && Vector3.Distance(transform.position, other.transform.position) < (this.AttackRange + 2f))
         {
             Debug.Log(Vector3.Distance(transform.position, other.transform.position));
@@ -251,7 +254,29 @@ public class Unit : MonoBehaviour
     private void KillUnit()
     {
         StopAllCoroutines();
-        if (owner == Owner.AI) GameManager.Instance.AIPlayer.availableUnits.Remove(this);
+        if (owner == Owner.AI)
+        {
+            
+            foreach(Unit other in GameManager.Instance.Player.availableUnits)
+            {
+                if (other.currentTarget != null)
+                {
+                    if (other.currentTarget.TargetUnit == this) other.currentTarget = null; other.currentTarget = null;
+                }
+            }
+            GameManager.Instance.AIPlayer.availableUnits.Remove(this);
+        }
+        else
+        {
+            foreach (Unit other in GameManager.Instance.AIPlayer.availableUnits)
+            {
+                if (other.currentTarget != null)
+                {
+                    if (other.currentTarget.TargetUnit == this) other.currentTarget = null; other.currentTarget = null;
+                }
+            }
+            GameManager.Instance.Player.availableUnits.Remove(this);
+        }
         Destroy(this.gameObject);
     }
     /*

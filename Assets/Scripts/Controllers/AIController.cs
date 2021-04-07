@@ -89,6 +89,7 @@ public class AIController : MonoBehaviour
             case AIState.DEFEND:
                 break;
             case AIState.ATTACK:
+                state = Attack();
                 break;
             default:
                 break;
@@ -145,6 +146,14 @@ public class AIController : MonoBehaviour
     private AIState BuildUp()
     {
         Debug.Log("Building up");
+        if(currentConstructionSite != null)
+        {
+            Unit scout = GetAvailableUnit();
+            InProgressBuilding inProgressBuilding = currentConstructionSite.GetComponent<InProgressBuilding>();
+            Target target = new Target(inProgressBuilding);
+            scout.InteractWithTarget(target);
+            return AIState.BUILDUP;
+        }
         if (availableUnits.Count > unitThreshold) return AIState.ATTACK;
         if (amountOfResources < resourceThreshold && !(availableUnits.Count <= 0)) return AIState.GATHER;
 
@@ -157,13 +166,6 @@ public class AIController : MonoBehaviour
                 baseScript.BuildDrone();
                 amountOfResources -= 50;
             }
-        }
-        else if(currentConstructionSite != null)
-        {
-            Unit scout = GetAvailableUnit();
-            InProgressBuilding inProgressBuilding = currentConstructionSite.GetComponent<InProgressBuilding>();
-            Target target = new Target(inProgressBuilding);
-            scout.InteractWithTarget(target);
         }
         else if(availableBuildings.Count <= 1 )
         {
@@ -180,7 +182,7 @@ public class AIController : MonoBehaviour
             InProgressBuilding inProgressBuilding = site.GetComponent<InProgressBuilding>();
             inProgressBuilding.project = factoryProject;
             currentConstructionSite = site;
-
+            amountOfResources -= 100;
             //old lets change
             //GameObject factory = Instantiate(factoryPrefab) as GameObject;
             //factory.transform.position = buildingPosition;
@@ -202,6 +204,7 @@ public class AIController : MonoBehaviour
             inProgressBuilding.project = availableFactories.Count == 0 ? hangarProject : garageProject;
             currentConstructionSite = site;
 
+            amountOfResources -= 200;
 
             //GameObject factory = Instantiate(unitFactoryPrefabs[Random.Range(0,1)]) as GameObject;
             //factory.transform.position = buildingPosition;
@@ -234,6 +237,7 @@ public class AIController : MonoBehaviour
             Unit unit = GO.GetComponent<Unit>();
             GO.SetActive(true);
             availableUnits.Add(unit);
+            amountOfResources -= 100;
         }
 
         return AIState.BUILDUP;
@@ -256,7 +260,26 @@ public class AIController : MonoBehaviour
     }
     private AIState Attack()
     {
-        return AIState.GATHER;
+        Debug.Log("Attacking");
+        if (availableUnits.Count < unitThreshold - 2) return AIState.BUILDUP;
+
+        if(GameManager.Instance.Player.availableUnits.Count > 0)
+        {
+            Unit targetUnit = GameManager.Instance.Player.availableUnits[Random.Range(0, GameManager.Instance.Player.availableUnits.Count)];
+            Debug.Log("Target unit : " + targetUnit.unitName);
+            Target target = new Target(targetUnit, TargetType.ENEMY);
+
+            Debug.Log("Target pos " + target.Position.ToString());
+            Debug.Log(target);
+
+            Unit attacker = GetAvailableUnit();
+            attacker.currentTarget = target;
+            Debug.Log("Attacker unit is " + attacker.unitName);
+            attacker.InteractWithTarget(target);
+
+        }
+
+        return AIState.BUILDUP;
     }
 
 }
